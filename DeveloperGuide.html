@@ -78,21 +78,7 @@
 </ul>
 </li>
 <li><a href="#user-stories">Appendix B: User Stories</a></li>
-<li><a href="#use-cases">Appendix C: Use Cases</a>
-<ul class="sectlevel2">
-<li><a href="#use-case-add-person">C.1. Use case: Add person</a></li>
-<li><a href="#use-case-list">C.2. Use case: List</a></li>
-<li><a href="#use-case-edit-person">C.3. Use case: Edit person</a></li>
-<li><a href="#use-case-find-person">C.4. Use case: Find person</a></li>
-<li><a href="#use-case-delete-person">C.5. Use case: Delete person</a></li>
-<li><a href="#use-case-select-person">C.6. Use case: Select person</a></li>
-<li><a href="#use-case-history">C.7. Use case: History</a></li>
-<li><a href="#use-case-undo">C.8. Use case: Undo</a></li>
-<li><a href="#use-case-redo">C.9. Use case: Redo</a></li>
-<li><a href="#use-case-clear">C.10. Use case: Clear</a></li>
-<li><a href="#use-case-exit">C.11. Use case: Exit</a></li>
-</ul>
-</li>
+<li><a href="#use-cases">Appendix C: Use Cases</a></li>
 <li><a href="#non-functional-requirements">Appendix D: Non Functional Requirements</a></li>
 <li><a href="#glossary">Appendix E: Glossary</a></li>
 <li><a href="#product-survey">Appendix F: Product Survey</a></li>
@@ -1753,6 +1739,12 @@ for <code>RemarkCommandParser</code>.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">edit my own contact details</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can make changes/correct my errors</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">add/edit a tag pegged to my contact</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">I can update the tags if necessary</p></td>
 </tr>
@@ -1761,24 +1753,6 @@ for <code>RemarkCommandParser</code>.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">undo and redo my last action</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">I can recover from my mistakes</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">know how to get to my contact&#8217;s address from my current location on Google maps</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">I know which route to take to get there</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">be warned before deleting/ clearing contact</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">I won&#8217;t accidentally delete a person</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">message/email/call my contacts in the list</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">I do not have to copy/paste/manually enter their details</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
@@ -1795,20 +1769,8 @@ for <code>RemarkCommandParser</code>.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">create a password to hide all the protected field</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">only I can access the protected field</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">user with sensitive data</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">log in to access the addressbook</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">only I can access the addressbook</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">store my addressbook in the cloud</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">I can access my addressbook from any device</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
@@ -1819,74 +1781,74 @@ for <code>RemarkCommandParser</code>.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">see all the names in my contact without the details</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">I can view a compact list of names on my addressbook</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">search for users by other fields (e.g. email/address/contact number)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">I can quickly access contact by other identifiable attributes</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">add an event to the addressbook</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">I can easily save appointments to the addressbook&#8217;s calendar</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">execute commands interactively</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">I don&#8217;t need to remember all the commands</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">open a save file in other directory</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">open a save file in another directory</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">I can have multiple addressbooks and share with other users</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">hide <a href="#private-contact-detail">private contact details</a> by default</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">minimize chance of someone else seeing them by accident</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">change the color scheme/UI elements of the addressbook</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can select a color/font that suits my preference</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">export and import my contact details</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can share the contact details</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">share a contact card (that is exported) with another user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can easily share with a click of a button and avoid manual sharing</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add my contact&#8217;s birthday details</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can keep track of my contact&#8217;s birthdays</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">be reminded of my contact&#8217;s birthday</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">I can remember their birthdays easily</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">view my contact&#8217;s social media profiles</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add social media links for me and my contacts</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">We can connect socially</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">view my contact&#8217;s social media profiles link</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">I can easily connect with them if I have not already done so</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">execute commands with my voice</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">I can search for contacts without having to touch the keyboard</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">use alias for shorthand for commands</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I don&#8217;t have to type all the commands every time I use it</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">auto-complete the commands</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can be efficient and not worry about entering wrong commands</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">interact with the GUI in natural language</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">I do not have to remember the commands</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">edit their details without inputting a long String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">edit their details without including prefix</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">I can conveniently edit a person without having to include tags every time</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">see my contact&#8217;s social media updates</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">I keep up with their activities</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
@@ -1897,20 +1859,44 @@ for <code>RemarkCommandParser</code>.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">change the color scheme/UI elements of the addressbook</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">I can select a color/font that suits my preference</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">hide <a href="#private-contact-detail">private contact details</a> by default</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">minimize chance of someone else seeing them by accident</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">export my contact details</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">I can print out the contact document</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">know how to get to my contact&#8217;s address from my current location on Google maps</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I know which route to take to get there</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">message/create online groups (e.g. Google Doc/Telegram) for contacts in my list</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I do not have to copy/paste/manually enter their details</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">log in with my Facebook/Google account</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I do not have to enter my username/password</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">send feedback to the developer</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">I can give suggestion on how to improve the current app</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add an event to the addressbook</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can easily save appointments to the addressbook&#8217;s calendar</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">store my addressbook in the cloud</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can access my addressbook from any device</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
@@ -1923,6 +1909,24 @@ for <code>RemarkCommandParser</code>.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">see how my friends are interconnected</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">I can know who are our mutual friends</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">see my contact&#8217;s social media updates</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I keep up with their activities</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">execute commands with my voice</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can search for contacts without having to touch the keyboard</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">interact with the GUI in natural language</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I do not have to remember the commands</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
@@ -1957,8 +1961,7 @@ for <code>RemarkCommandParser</code>.</p>
 </li>
 </ol>
 </div>
-<div class="sect2">
-<h3 id="use-case-add-person"><a class="link" href="#use-case-add-person">C.1. Use case: Add person</a></h3>
+<h3 id="use-case-add-person" class="discrete">Use case: Add person</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2021,9 +2024,7 @@ for <code>RemarkCommandParser</code>.</p>
 </li>
 </ul>
 </div>
-</div>
-<div class="sect2">
-<h3 id="use-case-list"><a class="link" href="#use-case-list">C.2. Use case: List</a></h3>
+<h3 id="use-case-list" class="discrete">Use case: List</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2053,9 +2054,7 @@ for <code>RemarkCommandParser</code>.</p>
 </li>
 </ul>
 </div>
-</div>
-<div class="sect2">
-<h3 id="use-case-edit-person"><a class="link" href="#use-case-edit-person">C.3. Use case: Edit person</a></h3>
+<h3 id="use-case-edit-person" class="discrete">Use case: Edit person</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2117,9 +2116,7 @@ for <code>RemarkCommandParser</code>.</p>
 </li>
 </ul>
 </div>
-</div>
-<div class="sect2">
-<h3 id="use-case-find-person"><a class="link" href="#use-case-find-person">C.4. Use case: Find person</a></h3>
+<h3 id="use-case-find-person" class="discrete">Use case: Find person</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2156,9 +2153,7 @@ for <code>RemarkCommandParser</code>.</p>
 </li>
 </ul>
 </div>
-</div>
-<div class="sect2">
-<h3 id="use-case-delete-person"><a class="link" href="#use-case-delete-person">C.5. Use case: Delete person</a></h3>
+<h3 id="use-case-delete-person" class="discrete">Use case: Delete person</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2207,9 +2202,7 @@ for <code>RemarkCommandParser</code>.</p>
 </li>
 </ul>
 </div>
-</div>
-<div class="sect2">
-<h3 id="use-case-select-person"><a class="link" href="#use-case-select-person">C.6. Use case: Select person</a></h3>
+<h3 id="use-case-select-person" class="discrete">Use case: Select person</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2258,9 +2251,7 @@ for <code>RemarkCommandParser</code>.</p>
 </li>
 </ul>
 </div>
-</div>
-<div class="sect2">
-<h3 id="use-case-history"><a class="link" href="#use-case-history">C.7. Use case: History</a></h3>
+<h3 id="use-case-history" class="discrete">Use case: History</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2277,9 +2268,7 @@ for <code>RemarkCommandParser</code>.</p>
 </li>
 </ol>
 </div>
-</div>
-<div class="sect2">
-<h3 id="use-case-undo"><a class="link" href="#use-case-undo">C.8. Use case: Undo</a></h3>
+<h3 id="use-case-undo" class="discrete">Use case: Undo</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2316,9 +2305,7 @@ for <code>RemarkCommandParser</code>.</p>
 </li>
 </ul>
 </div>
-</div>
-<div class="sect2">
-<h3 id="use-case-redo"><a class="link" href="#use-case-redo">C.9. Use case: Redo</a></h3>
+<h3 id="use-case-redo" class="discrete">Use case: Redo</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2355,9 +2342,7 @@ for <code>RemarkCommandParser</code>.</p>
 </li>
 </ul>
 </div>
-</div>
-<div class="sect2">
-<h3 id="use-case-clear"><a class="link" href="#use-case-clear">C.10. Use case: Clear</a></h3>
+<h3 id="use-case-clear" class="discrete">Use case: Clear</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2374,9 +2359,7 @@ for <code>RemarkCommandParser</code>.</p>
 </li>
 </ol>
 </div>
-</div>
-<div class="sect2">
-<h3 id="use-case-exit"><a class="link" href="#use-case-exit">C.11. Use case: Exit</a></h3>
+<h3 id="use-case-exit" class="discrete">Use case: Exit</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2392,10 +2375,6 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 </li>
 </ol>
-</div>
-<div class="paragraph">
-<p>{More to be added}</p>
-</div>
 </div>
 </div>
 </div>
@@ -2432,9 +2411,6 @@ for <code>RemarkCommandParser</code>.</p>
 <p>Every additional feature/improvement should have comprehensive tests written to ensure error-free code.</p>
 </li>
 </ol>
-</div>
-<div class="paragraph">
-<p>{More to be added}</p>
 </div>
 </div>
 </div>
@@ -2499,7 +2475,7 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-13 13:55:34 +00:00
+Last updated 2017-10-14 03:27:25 +00:00
 </div>
 </div>
 </body>
