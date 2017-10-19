@@ -35,12 +35,13 @@
 <li><a href="#locating-persons-by-details-code-search-code">2.6. Locating persons by details: <code>search</code></a></li>
 <li><a href="#deleting-a-person-code-delete-code">2.7. Deleting a person : <code>delete</code></a></li>
 <li><a href="#selecting-a-person-code-select-code">2.8. Selecting a person : <code>select</code></a></li>
-<li><a href="#listing-entered-commands-code-history-code">2.9. Listing entered commands : <code>history</code></a></li>
-<li><a href="#undoing-previous-command-code-undo-code">2.10. Undoing previous command : <code>undo</code></a></li>
-<li><a href="#redoing-the-previously-undone-command-code-redo-code">2.11. Redoing the previously undone command : <code>redo</code></a></li>
-<li><a href="#clearing-all-entries-code-clear-code">2.12. Clearing all entries : <code>clear</code></a></li>
-<li><a href="#exiting-the-program-code-exit-code">2.13. Exiting the program : <code>exit</code></a></li>
-<li><a href="#saving-the-data">2.14. Saving the data</a></li>
+<li><a href="#exporting-a-list-of-persons-code-export-code">2.9. Exporting a list of persons : <code>export</code></a></li>
+<li><a href="#listing-entered-commands-code-history-code">2.10. Listing entered commands : <code>history</code></a></li>
+<li><a href="#undoing-previous-command-code-undo-code">2.11. Undoing previous command : <code>undo</code></a></li>
+<li><a href="#redoing-the-previously-undone-command-code-redo-code">2.12. Redoing the previously undone command : <code>redo</code></a></li>
+<li><a href="#clearing-all-entries-code-clear-code">2.13. Clearing all entries : <code>clear</code></a></li>
+<li><a href="#exiting-the-program-code-exit-code">2.14. Exiting the program : <code>exit</code></a></li>
+<li><a href="#saving-the-data">2.15. Saving the data</a></li>
 </ul>
 </li>
 <li><a href="#faq">3. FAQ</a></li>
@@ -416,7 +417,52 @@ Selects the 1st person in the results of the <code>find</code> command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">2.9. Listing entered commands : <code>history</code></a></h3>
+<h3 id="exporting-a-list-of-persons-code-export-code"><a class="link" href="#exporting-a-list-of-persons-code-export-code">2.9. Exporting a list of persons : <code>export</code></a></h3>
+<div class="paragraph">
+<p>Exports persons identified by the index numbers used in the last person listing to a specified save file.<br>
+Format: <code>export INDEXES ; FILE_PATH</code><br></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The indexes refers to the index number shown in the most recent listing, and must be positive numbers separated by whitespaces or commas (,).</p>
+</li>
+<li>
+<p><code>INDEXES</code> and <code>FILE_PATH</code> must be separated by ";".</p>
+</li>
+<li>
+<p>If the given file exsits, it will be overwritten without warning.</p>
+</li>
+<li>
+<p>The persons are exported to a XML format file, so a <code>.xml</code> extension will be automatically added, if the given file does not have one.</p>
+</li>
+<li>
+<p>The <code>FILE_PATH</code> can be in relative path or absolute path.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>list</code><br>
+<code>export 1, 2 3; Persons.xml</code><br>
+Exports 1st, 2nd and 3rd person in the address book to <code>Persons.xml</code> in the current working directory.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Since v1.2.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">2.10. Listing entered commands : <code>history</code></a></h3>
 <div class="paragraph">
 <p>Lists all the commands that you have entered in reverse chronological order.<br>
 Format: <code>history</code></p>
@@ -437,7 +483,7 @@ Format: <code>history</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">2.10. Undoing previous command : <code>undo</code></a></h3>
+<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">2.11. Undoing previous command : <code>undo</code></a></h3>
 <div class="paragraph">
 <p>Restores the address book to the state before the previous <em>undoable</em> command was executed.<br>
 Format: <code>undo</code><br>
@@ -483,7 +529,7 @@ The <code>undo</code> command fails as there are no undoable commands executed p
 </div>
 </div>
 <div class="sect2">
-<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">2.11. Redoing the previously undone command : <code>redo</code></a></h3>
+<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">2.12. Redoing the previously undone command : <code>redo</code></a></h3>
 <div class="paragraph">
 <p>Reverses the most recent <code>undo</code> command.<br>
 Format: <code>redo</code><br>
@@ -516,7 +562,7 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 </div>
 </div>
 <div class="sect2">
-<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">2.12. Clearing all entries : <code>clear</code></a></h3>
+<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">2.13. Clearing all entries : <code>clear</code></a></h3>
 <div class="paragraph">
 <p>Clears all entries from the address book.<br>
 Format: <code>clear</code>
@@ -524,14 +570,14 @@ Shorthand for clear: <code>c</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">2.13. Exiting the program : <code>exit</code></a></h3>
+<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">2.14. Exiting the program : <code>exit</code></a></h3>
 <div class="paragraph">
 <p>Exits the program.<br>
 Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">2.14. Saving the data</a></h3>
+<h3 id="saving-the-data"><a class="link" href="#saving-the-data">2.15. Saving the data</a></h3>
 <div class="paragraph">
 <p>Address book data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
@@ -583,6 +629,10 @@ e.g. <code>find James Jake</code></p>
 e.g.<code>select 2</code></p>
 </li>
 <li>
+<p><strong>Export</strong> : <code>export INDEXES ; FILE_PATH</code><br>
+e.g.<code>export 1,2 3 4 ; Persons.xml</code></p>
+</li>
+<li>
 <p><strong>History</strong> : <code>history</code></p>
 </li>
 <li>
@@ -598,7 +648,7 @@ e.g.<code>select 2</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-19 00:29:40 +00:00
+Last updated 2017-10-19 16:20:50 +00:00
 </div>
 </div>
 </body>
