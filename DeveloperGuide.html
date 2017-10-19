@@ -45,8 +45,9 @@
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
 <li><a href="#undo-redo-mechanism">3.1. Undo/Redo mechanism</a></li>
-<li><a href="#logging">3.2. Logging</a></li>
-<li><a href="#configuration">3.3. Configuration</a></li>
+<li><a href="#search-mechanism">3.2. Search mechanism</a></li>
+<li><a href="#logging">3.3. Logging</a></li>
+<li><a href="#configuration">3.4. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -767,7 +768,52 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.2. Logging</a></h3>
+<h3 id="search-mechanism"><a class="link" href="#search-mechanism">3.2. Search mechanism</a></h3>
+<div class="paragraph">
+<p>The search mechanism is very similar to find and relies on the predicate <code>DetailsContainKeyphrasePredicate</code>. This function allows users to search for persons whose details matches the keyphrase, case-insensitive. In other words, if any aspect of a person&#8217;s details (i.e. Name, Phone, Email, Address, Remark or Tag) contains exactly the keyphrase (inclusive of spaces and special characters) as a subsequence, the person(s) will be listed.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SearchCommandSequenceDiagram.png" alt="SearchCommandSequenceDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 3.2.1 : Sequence Diagram of the Search Command</em></p>
+</div>
+<div class="paragraph">
+<p>When the <code>search</code> command (or alias: <code>sh</code>) is being entered, followed by a non-empty keyphrase, <code>AddressBookParser</code> in <code>LogicManager</code> will return a <code>SearchCommandParser</code>, which will parse the keyphrase. The keyphrase will have trailing and preceding white spaces removed, and be ensured that it is not empty String. The parser will return a <code>SearchCommand</code> object, with a <code>DetailsContainKeyphrasePredicate</code> as its argument.</p>
+</div>
+<div class="paragraph">
+<p><code>DetailsContainKeyphrasePredicate</code> implements a <code>Predicate &lt;ReadOnlyPerson&gt;</code> interface. <code>DetailsContainKeyphrasePredicate#test(ReadOnlyPerson person)</code> will be use to test if a Person&#8217;s details contain the keyphrase. Within <code>DetailsContainKeyphrasePredicate#test(ReadOnlyPerson person), a private method would be used to check each aspect of a Person (e.g. Name, Phone, Address etc.) to ensure readability. Since `String#contain</code> is case-sensitive, a case-insensitive method to check is required. <code>StringUtil#caseInsensitiveContains(Person person, String keyphrase)</code> converts both the Person&#8217;s attribute value and keyphrase to lowercase, and proceeds to use <code>String#contain</code> to ensure case-insensitivity.</p>
+</div>
+<div class="paragraph">
+<p>After a <code>SearchCommand</code> is returned to the <code>LogicManager</code>, it will be executed. The method will call the model&#8217;s <code>updateFileredPersonList</code> method, which will list every Person that passes <code>DetailsContainKeyphrasePredicate#test</code>, and update the model accordingly. A successful command message will be returned if there are no errors thrown and the UI will update accordingly.</p>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.1. Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> What to be searched for<br>
+<strong>Alternative 1 (current choice):</strong> Include all aspects of Persons to be searched for<br>
+<strong>Pros:</strong> Users can search for users by other fields instead of name<br>
+<strong>Cons:</strong> The search result may be too much for user to process, especially when common sequence of alphabets are entered (e.g. ".com")<br>
+<strong>Alternative 2:</strong> Search only for selected fields<br>
+<strong>Pros:</strong> Reduces the amount of search results for the user<br>
+<strong>Cons:</strong> There is no consistency (design principle) with the mental concept of search that is currently used by applications such as Microsoft Word and Internet Browsers.</p>
+</div>
+<hr>
+<div class="paragraph">
+<p><strong>Aspect:</strong> How to search<br>
+<strong>Alternative 1 (current choice):</strong> Use <code>DetailsContainKeyphrasePredicate</code><br>
+<strong>Pros:</strong> <code>DetailsContainKeyphrasePredicate</code> is similar to <code>NameContainsKeywordsPredicate</code> used by FindCommand and therefore easier to implement<br>
+<strong>Cons:</strong> Polymorphism may be employed instead of using separate classes for functions that are similar<br>
+<strong>Alternative 2:</strong> Let <code>DetailsContainKeyphrasePredicate</code> inherit <code>NameContainsKeywordsPredicate</code><br>
+<strong>Pros:</strong> Easier for developers to override and add methods<br>
+<strong>Cons:</strong> Internal attributes are of different types and it might be more cumbersome to manipulate the data type.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="logging"><a class="link" href="#logging">3.3. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
@@ -805,7 +851,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="configuration"><a class="link" href="#configuration">3.3. Configuration</a></h3>
+<h3 id="configuration"><a class="link" href="#configuration">3.4. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -2475,7 +2521,7 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-18 12:06:14 +00:00
+Last updated 2017-10-19 00:29:40 +00:00
 </div>
 </div>
 </body>
