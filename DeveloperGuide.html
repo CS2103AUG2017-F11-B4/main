@@ -46,8 +46,9 @@
 <ul class="sectlevel2">
 <li><a href="#undo-redo-mechanism">3.1. Undo/Redo mechanism</a></li>
 <li><a href="#search-mechanism">3.2. Search mechanism</a></li>
-<li><a href="#logging">3.3. Logging</a></li>
-<li><a href="#configuration">3.4. Configuration</a></li>
+<li><a href="#export-import-mechanism">3.3. Export/Import mechanism</a></li>
+<li><a href="#logging">3.4. Logging</a></li>
+<li><a href="#configuration">3.5. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -813,7 +814,60 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.3. Logging</a></h3>
+<h3 id="export-import-mechanism"><a class="link" href="#export-import-mechanism">3.3. Export/Import mechanism</a></h3>
+<div class="paragraph">
+<p>We are using XML file to export and import data in address book. Export and Import are designed to allow users to share contacts with each other or synchronize their data in different devices. A list of persons with all information will be written into a specified file in XML format in <code>export</code> command. And <code>import</code> command will be able to read the file generate, and add the person list into the address book.</p>
+</div>
+<div class="paragraph">
+<p><code>export</code> command accepts a list of indexes and a file path. (e.g. <code>export INDEXES;FILE_PATH</code>) The arguments will be passed to <code>ExportCommandParser#parse()</code> method, which will parse two parameters and create a <code>ExportCommand</code> object. Then <code>execute()</code> will be called by <code>LogicManager</code> after setting the address book data.</p>
+</div>
+<div class="paragraph">
+<p>A <code>List&lt;ReadOnlyPerson&gt;</code> is created by mapping the indexes and <code>filteredPersonList</code> in <code>Model</code>, and then saved using <code>PersonListStorage#savePersonList()</code>. The <code>PersonListStorage</code> interface is implemented by <code>XmlPersonListStorage</code>, where the <code>Person</code> is mapped to <code>XmlAdaptedPerson</code> and stored in <code>XmlSerializablePersonList</code>. Then the XML <code>Marshaller</code> writes all data into the file specified.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the export operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ExportCommandSequenceDiagram.png" alt="ExportCommandSequenceDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>When <code>import</code> command is entered, the XML <code>Unmarshaller</code> will read the file and return a <code>XmlSerializablePersonList</code> object that contains the Person List. The the List is internally converted to a <code>UniquePersonList</code> by <code>XmlSerializablePersonList#getPersons()</code>, and returned to <code>ImportCommand</code>. Then the <code>Person`s are added to the address book sequentially by `Model#addPerson(Person)</code>.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the import operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ImportCommandSequenceDiagram.png" alt="ImportCommandSequenceDiagram" width="800">
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-consideration"><a class="link" href="#design-consideration">3.3.1. Design Consideration</a></h4>
+<div class="paragraph">
+<p><strong>Aspect</strong> Format of export file<br>
+<strong>Alternative 1 (current choice):</strong> Use XML format<br>
+<strong>Pros:</strong> XML format are currently used for saving the address book, so the save method has already been implemented<br>
+<strong>Cons:</strong> Person list need to be transformed to a XML root class while saving and transformed back while reading file<br>
+<strong>Alternative 2:</strong> Save add command as plan text<br>
+<strong>Pros:</strong> Generating command is easy and can be directly used<br>
+<strong>Cons:</strong> Needs to implement new file writer and reader<br></p>
+</div>
+<hr>
+<div class="paragraph">
+<p><strong>Aspect</strong> The return type of <code>XmlPersonListStorage#readPersonList()</code><br>
+<strong>Alternative 1 (current choice):</strong> Use <code>UniquePersonList</code><br>
+<strong>Pros:</strong> The persons are unique when adding to address book<br>
+<strong>Cons:</strong> Needs to handle exception when encounter duplicated persons in the file<br>
+<strong>Alternative 2:</strong> Use <code>List&lt;ReadOnlyPerson&gt;</code><br>
+<strong>Pros:</strong> Has no need to worry about reading the file<br>
+<strong>Cons:</strong> Cannot tell the <code>DuplicatedPersonException</code> is caused by persons in file or in address book<br></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="logging"><a class="link" href="#logging">3.4. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
@@ -851,7 +905,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="configuration"><a class="link" href="#configuration">3.4. Configuration</a></h3>
+<h3 id="configuration"><a class="link" href="#configuration">3.5. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -2521,7 +2575,7 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-20 01:38:42 +00:00
+Last updated 2017-10-20 14:30:43 +00:00
 </div>
 </div>
 </body>
