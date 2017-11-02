@@ -49,8 +49,9 @@
 <li><a href="#export-import-mechanism">3.3. Export/Import mechanism</a></li>
 <li><a href="#user-login">3.4. User Login</a></li>
 <li><a href="#contact-profile-picture">3.5. Contact Profile Picture</a></li>
-<li><a href="#logging">3.6. Logging</a></li>
-<li><a href="#configuration">3.7. Configuration</a></li>
+<li><a href="#auto-complete">3.6. Auto-Complete</a></li>
+<li><a href="#logging">3.7. Logging</a></li>
+<li><a href="#configuration">3.8. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -939,7 +940,40 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.6. Logging</a></h3>
+<h3 id="auto-complete"><a class="link" href="#auto-complete">3.6. Auto-Complete</a></h3>
+<div class="paragraph">
+<p>All auto-complete functions are implemented in one class, <code>AutoComplete</code>, including command fill-in and command word guess.<br></p>
+</div>
+<div class="paragraph">
+<p>When user hits <code>TAB</code> in the CommandBox, or when a <code>ParserException</code> or <code>CommandException</code> is thrown, <code>CommandBox</code> will call <code>LogicManager#autoComplete</code> and set text to the return String. <code>LogicManager#autoComplete</code> will call <code>AutoComplete</code> class, which will return auto-completed command, with current <code>filteredPersonList</code>.<br></p>
+</div>
+<div class="paragraph">
+<p>Inside <code>AutoComplete</code> class, a parser will split the command into command word and arguments. The command word will be matched to the existing commands, if it can be matched, corresponding autoComplete method will be called with arguments. (e. g. if the command is "add n/", <code>addCommandAutoComplete()</code> will be called) If the command word is invalid, we will try to do a prefix match, and return the suggested command. If the prefix cannot match, a fuzzy search method will be called.<br></p>
+</div>
+<div class="paragraph">
+<p>The fuzzy search calculates levenshtein distance to represent the similarity of two String. If the distance is smaller than half of the length of the correct command word, it will be considered as a hit. For example, if the input command is "port", the levenshtein distance between "port" and "export" will be 2, which is smaller than half of the length of "export" which is 3. So it will be considered as a hit.<br></p>
+</div>
+<div class="paragraph">
+<p>If the command word of the input command is correct, corresponding auto-complete method will be called with argument. These methods do similar things including trimming unnecessary whitespaces, removing non-digit chars when an index is expected, generating all the prefixes that a command needs, filling in fields of a person in filteredPersonList when editing.<br></p>
+</div>
+<div class="paragraph">
+<p>The final return String will be the auto-completed command or a suggestion of possible commands, and will be shown in the CommandBox for further editing.</p>
+</div>
+<div class="sect3">
+<h4 id="design-consideration-3"><a class="link" href="#design-consideration-3">3.6.1. Design Consideration</a></h4>
+<div class="paragraph">
+<p><strong>Aspect</strong> Method of approximate string matching<br>
+<strong>Alternative 1 (current choice):</strong> Levenshtein distance.<br>
+<strong>Pros:</strong> Easy to implement and acceptable performance in a small system (18 available commands).<br>
+<strong>Cons:</strong> Could run slow in a larger system and the matching acurrate is low.<br>
+<strong>Alternative 2:</strong> More advanced matching methods (e. g. Bitap algorithm).<br>
+<strong>Pros:</strong> More accurate search with better performance.<br>
+<strong>Cons:</strong> Much more difficult to implement.<br></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="logging"><a class="link" href="#logging">3.7. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
@@ -977,7 +1011,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="configuration"><a class="link" href="#configuration">3.7. Configuration</a></h3>
+<h3 id="configuration"><a class="link" href="#configuration">3.8. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -2647,7 +2681,7 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-02 15:13:40 +00:00
+Last updated 2017-11-02 23:44:51 +00:00
 </div>
 </div>
 </body>

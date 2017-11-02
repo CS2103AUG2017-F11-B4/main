@@ -44,7 +44,8 @@
 <li><a href="#redoing-the-previously-undone-command-code-redo-code">2.15. Redoing the previously undone command : <code>redo</code></a></li>
 <li><a href="#clearing-all-entries-code-clear-code">2.16. Clearing all entries : <code>clear</code></a></li>
 <li><a href="#exiting-the-program-code-exit-code">2.17. Exiting the program : <code>exit</code></a></li>
-<li><a href="#saving-the-data">2.18. Saving the data</a></li>
+<li><a href="#auto-complete-commands">2.18. Auto-complete commands</a></li>
+<li><a href="#saving-the-data">2.19. Saving the data</a></li>
 </ul>
 </li>
 <li><a href="#faq">3. FAQ</a></li>
@@ -195,7 +196,7 @@ User must be logged in before executing commands.
 <h3 id="adding-a-person-code-add-code"><a class="link" href="#adding-a-person-code-add-code">2.3. Adding a person: <code>add</code></a></h3>
 <div class="paragraph">
 <p>Adds a person to the address book<br>
-Format: <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]&#8230;&#8203;</code><br>
+Format: <code>add n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [b/BIRTHDAY] [t/TAG]&#8230;&#8203;</code><br>
 Shorthand for add: <code>a</code></p>
 </div>
 <div class="admonitionblock tip">
@@ -268,7 +269,7 @@ Sort function will sort the attribute in ascending order by default
 <h3 id="editing-a-person-code-edit-code"><a class="link" href="#editing-a-person-code-edit-code">2.6. Editing a person : <code>edit</code></a></h3>
 <div class="paragraph">
 <p>Edits an existing person in the address book.<br>
-Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code><br>
+Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG]&#8230;&#8203;</code><br>
 Shorthand for edit: <code>e</code></p>
 </div>
 <div class="sidebarblock">
@@ -700,7 +701,41 @@ Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">2.18. Saving the data</a></h3>
+<h3 id="auto-complete-commands"><a class="link" href="#auto-complete-commands">2.18. Auto-complete commands</a></h3>
+<div class="paragraph">
+<p>Address book has auto-complete function for the commands. If you hit <code>TAB</code> in the command box or if you try to execute an error command, the command box will show the auto-completed command and suggestions.<br></p>
+</div>
+<div class="paragraph">
+<p>The auto-complete function will work in the following ways:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>fill in fields that is not been inputed by the user. (add, edit)</p>
+</li>
+<li>
+<p>remove non-digit characters when an index is expected. (delete, export, select)</p>
+</li>
+<li>
+<p>try to find the position of the delimiter when it cannot be found. (export)</p>
+</li>
+<li>
+<p>trim unnecessary white spaces.</p>
+</li>
+<li>
+<p>complete the command when the prefix of a certain command is inputted.</p>
+</li>
+<li>
+<p>try to guess what command is being inputting when the command word is invalid.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Since v1.3.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="saving-the-data"><a class="link" href="#saving-the-data">2.19. Saving the data</a></h3>
 <div class="paragraph">
 <p>Address book data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
@@ -775,7 +810,7 @@ e.g. <code>import persons.xml</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-02 15:13:40 +00:00
+Last updated 2017-11-02 23:44:51 +00:00
 </div>
 </div>
 </body>
