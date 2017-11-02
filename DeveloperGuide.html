@@ -48,8 +48,9 @@
 <li><a href="#search-mechanism">3.2. Search mechanism</a></li>
 <li><a href="#export-import-mechanism">3.3. Export/Import mechanism</a></li>
 <li><a href="#user-login">3.4. User Login</a></li>
-<li><a href="#logging">3.5. Logging</a></li>
-<li><a href="#configuration">3.6. Configuration</a></li>
+<li><a href="#contact-profile-picture">3.5. Contact Profile Picture</a></li>
+<li><a href="#logging">3.6. Logging</a></li>
+<li><a href="#configuration">3.7. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -873,14 +874,10 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <p>We are currently using a simple authenticating method to validate users. In summary, the user&#8217;s username and password would be compared to the username and password stored in a file called <code>credentials.json</code>. More precisely, the password is stored as a hash value, using Java&#8217;s <code>String#hashCode()</code> method to prevent the password from being openly stored.</p>
 </div>
 <div class="paragraph">
-<p>Before the user is logged in, the user would not be able to execute any commands. In this version, the user is still able to view the loaded list of contacts. In V1.4, the addressbook will not be loaded until the user is logged in.</p>
+<p>Before the user is logged in, the user would not be able to execute any commands. In this version, the user is still able to view the loaded list of contacts. In V1.5, the addressbook will not be loaded until the user is logged in.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Mechanism *</p>
-</li>
-</ul>
+<div class="paragraph">
+<p><strong>Mechanism</strong></p>
 </div>
 <div class="paragraph">
 <p>A <code>LoginCommandParser</code> parses a user&#8217;s username and password, and returns a <code>LoginCommand</code>. The username and password entered by the user would be encapsulated in a class <code>UserCreds</code>, which is a private attribute in the <code>LoginCommand</code>. When the <code>execute</code> method is called, the <code>UserCreds</code> attribute in the <code>LoginCommand</code> would be compared against the <code>UserCreds</code> in the model. The model gets <code>UserCreds</code> attribute by reading the JSON file <code>credentials.json</code>.</p>
@@ -912,7 +909,37 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.5. Logging</a></h3>
+<h3 id="contact-profile-picture"><a class="link" href="#contact-profile-picture">3.5. Contact Profile Picture</a></h3>
+<div class="paragraph">
+<p>We are using <code>facebook4j</code> package as a wrapper to access Facebook&#8217;s Graph API. The <code>Facebook</code> class is used as an API to access the methods.</p>
+</div>
+<div class="paragraph">
+<p>This class is used only in <code>PersonProfile</code> class, where there is a need to retrieve a contact&#8217;s profile picture from Facebook to use as a contact profile picture. The method <code>facebook#getPictureURL(String userId, PictureSize size)</code> is used to retrieve a larger image from Facebook.</p>
+</div>
+<div class="paragraph">
+<p>[Note] The application is currently authorized with an application token that will expire in 2 months.</p>
+</div>
+<div class="paragraph">
+<p>In the event that an image cannot be retrieved from Facebook, a default image stored locally would be used as the contact&#8217;s profile picture.</p>
+</div>
+<div class="paragraph">
+<p><strong>Aspect</strong> Retrieving a user&#8217;s Facebook profile picture<br>
+<strong>Alternative 1 (temporary fix)</strong>: Hard code a Facebook userId, which will be used to retrieve a profile picture from the user.<br>
+<strong>Alternative 2</strong>: Figure out how to retrieve userId from a Facebook user&#8217;s username or url.<br>
+<strong>Alternative 3</strong>: Introduce another 3rd party library that returns a userId from a username<br>
+<strong>Pros</strong>: Able to quickly prototype with the temporary fix<br>
+<strong>Cons</strong>: The profile picture does not match the actual contact</p>
+</div>
+<div class="paragraph">
+<p><strong>Aspect</strong> Facebook Authentication<br>
+<strong>Alternative 1 (current choice)</strong>: Create a Facebook application and store the app id, app secret and token in the <code>PersonProfile</code> class.<br>
+<strong>Alternative 2</strong>: Get users to log in with their own Facebook accounts and grant permission<br>
+<strong>Pros</strong>: Hassle free for users<br>
+<strong>Cons</strong>: The app id, app secret and token are stored in the open, which may pose security issues.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="logging"><a class="link" href="#logging">3.6. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
@@ -950,7 +977,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="configuration"><a class="link" href="#configuration">3.6. Configuration</a></h3>
+<h3 id="configuration"><a class="link" href="#configuration">3.7. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -2620,7 +2647,7 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-02 09:18:48 +00:00
+Last updated 2017-11-02 15:13:40 +00:00
 </div>
 </div>
 </body>
