@@ -242,7 +242,7 @@ A person can have any number of tags (including 0)
 <div class="ulist">
 <ul>
 <li>
-<p><code>add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01</code></p>
+<p><code>add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/2000/10/10</code></p>
 </li>
 <li>
 <p><code>add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 f/153080620724s t/criminal</code></p>
@@ -262,7 +262,7 @@ Shorthand for list: <code>l</code></p>
 <h3 id="sorting-persons-list-code-sort-code"><a class="link" href="#sorting-persons-list-code-sort-code">2.5. Sorting persons list : <code>sort</code></a></h3>
 <div class="paragraph">
 <p>Sorts the persons list according to the attribute specified in ascending or descending order.<br>
-Format: <code>sort PREFIX/ [reverse]</code><br></p>
+Format: <code>sort attribute [reverse]</code><br></p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -282,10 +282,10 @@ Sort function will sort the attribute in ascending order by default
 <div class="ulist">
 <ul>
 <li>
-<p><code>sort n/ reverse</code></p>
+<p><code>sort name reverse</code></p>
 </li>
 <li>
-<p><code>sort p/</code></p>
+<p><code>sort phone</code></p>
 </li>
 </ul>
 </div>
@@ -786,8 +786,8 @@ There is no need to save manually.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Add</strong> <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]&#8230;&#8203;</code><br>
-e.g. <code>add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague</code></p>
+<p><strong>Add</strong> <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]&#8230;&#8203;</code><br>
+e.g. <code>add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 b/2010/10/01 t/friend t/colleague</code></p>
 </li>
 <li>
 <p><strong>Clear</strong> : <code>clear</code></p>
@@ -797,7 +797,7 @@ e.g. <code>add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1
 e.g. <code>delete 3</code></p>
 </li>
 <li>
-<p><strong>Edit</strong> : <code>edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code><br>
+<p><strong>Edit</strong> : <code>edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG]&#8230;&#8203;</code><br>
 e.g. <code>edit 2 n/James Lee e/jameslee@example.com</code></p>
 </li>
 <li>
@@ -806,6 +806,10 @@ e.g. <code>find James Jake</code></p>
 </li>
 <li>
 <p><strong>List</strong> : <code>list</code></p>
+</li>
+<li>
+<p><strong>Sort</strong> : <code>sort attribute [reverse]</code><br>
+e.g. <code>sort name</code></p>
 </li>
 <li>
 <p><strong>Help</strong> : <code>help</code></p>
@@ -838,7 +842,7 @@ e.g. <code>import persons.xml</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-09 08:43:29 +00:00
+Last updated 2017-11-09 16:36:52 +00:00
 </div>
 </div>
 </body>
