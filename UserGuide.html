@@ -81,7 +81,20 @@ This app will not work with earlier versions of Java 8.
 <p>Copy the file to the folder you want to use as the home folder for your Address Book.</p>
 </li>
 <li>
-<p>Double-click the file to start the app. The GUI should appear in a few seconds.</p>
+<p>Open a terminal and run the command to start the app: <code>$ java -jar addressbook.jar</code>. The GUI should appear in a few seconds.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Double-click to open address book may work, but there will be unexpected errors.<br>
+So run the program through terminal is much preferred.
+</td>
+</tr>
+</table>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="images/Ui.png" alt="Ui" width="790">
@@ -196,8 +209,20 @@ User must be logged in before executing commands.
 <h3 id="adding-a-person-code-add-code"><a class="link" href="#adding-a-person-code-add-code">2.3. Adding a person: <code>add</code></a></h3>
 <div class="paragraph">
 <p>Adds a person to the address book<br>
-Format: <code>add n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [b/BIRTHDAY] [t/TAG]&#8230;&#8203;</code><br>
+Format: <code>add n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [b/BIRTHDAY] [f/FACEBOOK] [t/TAG]&#8230;&#8203;</code><br>
 Shorthand for add: <code>a</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Facebook represents a person&#8217;s Facebook ID (a long number), rather than the Facebook username.
+</td>
+</tr>
+</table>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -220,7 +245,7 @@ A person can have any number of tags (including 0)
 <p><code>add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01</code></p>
 </li>
 <li>
-<p><code>add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal</code></p>
+<p><code>add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 f/153080620724s t/criminal</code></p>
 </li>
 </ul>
 </div>
@@ -269,7 +294,7 @@ Sort function will sort the attribute in ascending order by default
 <h3 id="editing-a-person-code-edit-code"><a class="link" href="#editing-a-person-code-edit-code">2.6. Editing a person : <code>edit</code></a></h3>
 <div class="paragraph">
 <p>Edits an existing person in the address book.<br>
-Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG]&#8230;&#8203;</code><br>
+Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [f/FACEBOOK] [t/TAG]&#8230;&#8203;</code><br>
 Shorthand for edit: <code>e</code></p>
 </div>
 <div class="sidebarblock">
@@ -813,7 +838,7 @@ e.g. <code>import persons.xml</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-09 08:43:04 +00:00
+Last updated 2017-11-09 08:43:29 +00:00
 </div>
 </div>
 </body>
