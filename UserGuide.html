@@ -81,7 +81,20 @@ This app will not work with earlier versions of Java 8.
 <p>Copy the file to the folder you want to use as the home folder for your Address Book.</p>
 </li>
 <li>
-<p>Double-click the file to start the app. The GUI should appear in a few seconds.</p>
+<p>Open a terminal and run the command to start the app: <code>$ java -jar addressbook.jar</code>. The GUI should appear in a few seconds.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Double-click to open address book may work, but there will be unexpected errors.<br>
+So run the program through terminal is much preferred.
+</td>
+</tr>
+</table>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="images/Ui.png" alt="Ui" width="790">
@@ -505,7 +518,10 @@ Format: <code>export INDEXES ; FILE_PATH</code><br></p>
 <div class="ulist">
 <ul>
 <li>
-<p>The indexes refers to the index number shown in the most recent listing, and must be positive numbers separated by whitespaces or commas (,).</p>
+<p>The indexes must be positive numbers or two indexes linked by "-" (e. g. "1-4"), and they should be separated by whitespaces or commas (e.g. 1-3, 4 6).</p>
+</li>
+<li>
+<p>The indexes refers to the index number shown in the most recent listing.</p>
 </li>
 <li>
 <p><code>INDEXES</code> and <code>FILE_PATH</code> must be separated by ";".</p>
@@ -530,8 +546,8 @@ Format: <code>export INDEXES ; FILE_PATH</code><br></p>
 <ul>
 <li>
 <p><code>list</code><br>
-<code>export 1, 2 3; Persons.xml</code><br>
-Exports 1st, 2nd and 3rd person in the address book to <code>Persons.xml</code> in the current working directory.</p>
+<code>export 1-3, 5; Persons.xml</code><br>
+Exports 1st, 2nd, 3rd and 5th person in the address book to <code>Persons.xml</code> in the current working directory.</p>
 </li>
 </ul>
 </div>
@@ -810,7 +826,7 @@ e.g. <code>import persons.xml</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-07 01:57:49 +00:00
+Last updated 2017-11-09 08:43:16 +00:00
 </div>
 </div>
 </body>
