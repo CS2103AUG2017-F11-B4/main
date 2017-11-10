@@ -48,7 +48,11 @@
 <li><a href="#saving-the-data">2.19. Saving the data</a></li>
 </ul>
 </li>
-<li><a href="#faq">3. FAQ</a></li>
+<li><a href="#faq">3. FAQ</a>
+<ul class="sectlevel2">
+<li><a href="#adding-a-remark-code-remark-code">3.1. Adding a remark : <code>remark</code></a></li>
+</ul>
+</li>
 <li><a href="#command-summary">4. Command Summary</a></li>
 </ul>
 </div>
@@ -204,12 +208,15 @@ User must be logged in before executing commands.
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>Since v1.3.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="adding-a-person-code-add-code"><a class="link" href="#adding-a-person-code-add-code">2.3. Adding a person: <code>add</code></a></h3>
 <div class="paragraph">
 <p>Adds a person to the address book<br>
-Format: <code>add n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [b/BIRTHDAY] [f/FACEBOOK] [t/TAG]&#8230;&#8203;</code><br>
+Format: <code>add n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [r/REMARK] [b/BIRTHDAY] [f/FACEBOOK] [t/TAG]&#8230;&#8203;</code><br>
 Shorthand for add: <code>a</code></p>
 </div>
 <div class="admonitionblock note">
@@ -433,6 +440,9 @@ Returns any person having names <code>John Doe</code></p>
 Returns any person with details that matches <code>mate</code> such as <code>classmate</code> in tags.</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>Since v1.2.</p>
 </div>
 </div>
 <div class="sect2">
@@ -778,6 +788,47 @@ There is no need to save manually.</p>
 <p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
 <strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.</p>
 </div>
+<div class="sect2">
+<h3 id="adding-a-remark-code-remark-code"><a class="link" href="#adding-a-remark-code-remark-code">3.1. Adding a remark : <code>remark</code></a></h3>
+<div class="paragraph">
+<p>Adds a remark to a specified person from the address book.<br>
+Format: <code>remark INDEX [r/REMARK]</code><br>
+Shorthand for delete: <code>r</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Adds a remark to the person at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the most recent listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>list</code><br>
+<code>remark 2 r/Likes to drink coffee and has a good sense of humor</code><br>
+Adds the remark "Likes to drink coffee and has a good sense of humor"<br>
+to the 2nd person in the address book.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Since v1.1.</p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -805,6 +856,9 @@ e.g. <code>edit 2 n/James Lee e/jameslee@example.com</code></p>
 e.g. <code>find James Jake</code></p>
 </li>
 <li>
+<p><strong>Login</strong> : <code>login [usr/username] [pwd/password]</code></p>
+</li>
+<li>
 <p><strong>List</strong> : <code>list</code></p>
 </li>
 <li>
@@ -813,6 +867,12 @@ e.g. <code>sort name</code></p>
 </li>
 <li>
 <p><strong>Help</strong> : <code>help</code></p>
+</li>
+<li>
+<p><strong>Remark</strong> : <code>remark INDEX [r/REMARK]</code></p>
+</li>
+<li>
+<p><strong>Search</strong> : <code>search [keyphrase]</code></p>
 </li>
 <li>
 <p><strong>Select</strong> : <code>select INDEX</code><br>
@@ -842,7 +902,7 @@ e.g. <code>import persons.xml</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-10 00:01:06 +00:00
+Last updated 2017-11-10 03:33:46 +00:00
 </div>
 </div>
 </body>

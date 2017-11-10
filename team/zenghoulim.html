@@ -22,38 +22,45 @@
 <p>AddressBook - Level 4 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 6 kLoC.</p>
 </div>
 <div class="paragraph">
-<p><strong>Code contributed</strong>: [<a href="https://github.com">Functional code</a>] [<a href="https://github.com">Test code</a>] {give links to collated code files}</p>
+<p><strong>Code contributed</strong>: [<a href="https://github.com/CS2103AUG2017-F11-B4/main/blob/master/collated/main/zenghou.md">Functional code</a>] [<a href="https://github.com/CS2103AUG2017-F11-B4/main/blob/master/collated/test/zenghou.md">Test code</a>] {give links to collated code files}</p>
 </div>
 <div class="sect2">
-<h3 id="enhancement-added-undo-redo"><a class="link" href="#enhancement-added-undo-redo">Enhancement Added: Undo/Redo</a></h3>
+<h3 id="enhancement-added-code-remark-code-command"><a class="link" href="#enhancement-added-code-remark-code-command">Enhancement Added: <code>remark</code> Command</a></h3>
 <div class="sect3">
 <h4 id="external-behavior"><a class="link" href="#external-behavior">External behavior</a></h4>
 <hr>
 <div class="paragraph">
-<p><mark>Start of Extract [from: User Guide]</mark></p>
+<p>Adds a <code>remark</code> to a person in the address book
+Format: <code>remark INDEX [r/REMARK]</code></p>
+</div>
+<div class="paragraph">
+<p><mark>Start of Extract [from: UserGuide]</mark></p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">Undoing previous command : <code>undo</code></a></h3>
+<h3 id="adding-a-remark-code-remark-code"><a class="link" href="#adding-a-remark-code-remark-code">Adding a remark : <code>remark</code></a></h3>
 <div class="paragraph">
-<p>Restores the address book to the state before the previous <em>undoable</em> command was executed.<br>
-Format: <code>undo</code><br>
-Shorthand for undo: <code>u</code></p>
+<p>Adds a remark to a specified person from the address book.<br>
+Format: <code>remark INDEX [r/REMARK]</code><br>
+Shorthand for delete: <code>r</code></p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Undoable commands: those commands that modify the address book&#8217;s content (<code>add</code>, <code>delete</code>, <code>edit</code>, <code>import</code> and <code>clear</code>).</p>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Adds a remark to the person at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the most recent listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
 </div>
-</td>
-</tr>
-</table>
+</div>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -61,56 +68,15 @@ Shorthand for undo: <code>u</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>delete 1</code><br>
-<code>list</code><br>
-<code>undo</code> (reverses the <code>delete 1</code> command)<br></p>
-</li>
-<li>
-<p><code>select 1</code><br>
-<code>list</code><br>
-<code>undo</code><br>
-The <code>undo</code> command fails as there are no undoable commands executed previously.</p>
-</li>
-<li>
-<p><code>delete 1</code><br>
-<code>clear</code><br>
-<code>undo</code> (reverses the <code>clear</code> command)<br>
-<code>undo</code> (reverses the <code>delete 1</code> command)<br></p>
+<p><code>list</code><br>
+<code>remark 2 r/Likes to drink coffee and has a good sense of humor</code><br>
+Adds the remark "Likes to drink coffee and has a good sense of humor"<br>
+to the 2nd person in the address book.</p>
 </li>
 </ul>
 </div>
-</div>
-<div class="sect2">
-<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">Redoing the previously undone command : <code>redo</code></a></h3>
 <div class="paragraph">
-<p>Reverses the most recent <code>undo</code> command.<br>
-Format: <code>redo</code><br>
-Shorthand for redo: <code>r</code></p>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>delete 1</code><br>
-<code>undo</code> (reverses the <code>delete 1</code> command)<br>
-<code>redo</code> (reapplies the <code>delete 1</code> command)<br></p>
-</li>
-<li>
-<p><code>delete 1</code><br>
-<code>redo</code><br>
-The <code>redo</code> command fails as there are no <code>undo</code> commands executed previously.</p>
-</li>
-<li>
-<p><code>delete 1</code><br>
-<code>clear</code><br>
-<code>undo</code> (reverses the <code>clear</code> command)<br>
-<code>undo</code> (reverses the <code>delete 1</code> command)<br>
-<code>redo</code> (reapplies the <code>delete 1</code> command)<br>
-<code>redo</code> (reapplies the <code>clear</code> command)<br></p>
-</li>
-</ul>
+<p>Since v1.1.</p>
 </div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
@@ -119,7 +85,7 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 <div class="sect3">
 <h4 id="justification"><a class="link" href="#justification">Justification</a></h4>
 <div class="paragraph">
-<p>{Justify the need for, and the current design (i.e. external behavior) of, the feature}</p>
+<p>While a <code>remark</code> field is similar in nature to <code>tag</code> field, they serve different purpose. The former is used to store short phrase about a person (e.g. Likes to drink coffee and has good sense of humor) whereas the latter is suited for classifying persons in the address book.</p>
 </div>
 </div>
 <div class="sect3">
@@ -131,198 +97,1199 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 </div>
 </div>
 <div class="sect2">
-<h3 id="undo-redo-mechanism"><a class="link" href="#undo-redo-mechanism">Undo/Redo mechanism</a></h3>
+<h3 id="creating-a-new-command-code-remark-code"><a class="link" href="#creating-a-new-command-code-remark-code">Creating a new command: <code>remark</code></a></h3>
 <div class="paragraph">
-<p>The undo/redo mechanism is facilitated by an <code>UndoRedoStack</code>, which resides inside <code>LogicManager</code>. It supports undoing and redoing of commands that modifies the state of the address book (e.g. <code>add</code>, <code>edit</code>). Such commands will inherit from <code>UndoableCommand</code>.</p>
+<p>By creating this command, you will get a chance to learn how to implement a feature end-to-end, touching all major components of the app.</p>
 </div>
+<div class="sect3">
+<h4 id="description"><a class="link" href="#description">Description</a></h4>
 <div class="paragraph">
-<p><code>UndoRedoStack</code> only deals with <code>UndoableCommands</code>. Commands that cannot be undone will inherit from <code>Command</code> instead. The following diagram shows the inheritance diagram for commands:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/LogicCommandClassDiagram.png" alt="LogicCommandClassDiagram" width="800">
-</div>
+<p>Edits the remark for a person specified in the <code>INDEX</code>.<br>
+Format: <code>remark INDEX r/[REMARK]</code></p>
 </div>
 <div class="paragraph">
-<p>As you can see from the diagram, <code>UndoableCommand</code> adds an extra layer between the abstract <code>Command</code> class and concrete commands that can be undone, such as the <code>DeleteCommand</code>. Note that extra tasks need to be done when executing a command in an <em>undoable</em> way, such as saving the state of the address book before execution. <code>UndoableCommand</code> contains the high-level algorithm for those extra tasks while the child classes implements the details of how to execute the specific command. Note that this technique of putting the high-level algorithm in the parent class and lower-level steps of the algorithm in child classes is also known as the <a href="https://www.tutorialspoint.com/design_pattern/template_pattern.htm">template pattern</a>.</p>
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>remark 1 r/Likes to drink coffee.</code><br>
+Edits the remark for the first person to <code>Likes to drink coffee.</code></p>
+</li>
+<li>
+<p><code>remark 1 r/</code><br>
+Removes the remark for the first person.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="step-by-step-instructions"><a class="link" href="#step-by-step-instructions">Step-by-step Instructions</a></h4>
+<div class="sect4">
+<h5 id="step-1-logic-teach-the-app-to-accept-remark-which-does-nothing"><a class="link" href="#step-1-logic-teach-the-app-to-accept-remark-which-does-nothing">[Step 1] Logic: Teach the app to accept 'remark' which does nothing</a></h5>
+<div class="paragraph">
+<p>Let&#8217;s start by teaching the application how to parse a <code>remark</code> command. We will add the logic of <code>remark</code> later.</p>
 </div>
 <div class="paragraph">
-<p>Commands that are not undoable are implemented this way:</p>
+<p><strong>Main:</strong></p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">ListCommand</span> <span class="directive">extends</span> Command {
-    <span class="annotation">@Override</span>
-    <span class="directive">public</span> CommandResult execute() {
-        <span class="comment">// ... list logic ...</span>
-    }
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>With the extra layer, the commands that are undoable are implemented this way:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="directive">abstract</span> <span class="type">class</span> <span class="class">UndoableCommand</span> <span class="directive">extends</span> Command {
-    <span class="annotation">@Override</span>
-    <span class="directive">public</span> CommandResult execute() {
-        <span class="comment">// ... undo logic ...</span>
-
-        executeUndoableCommand();
-    }
-}
-
-<span class="directive">public</span> <span class="type">class</span> <span class="class">DeleteCommand</span> <span class="directive">extends</span> UndoableCommand {
-    <span class="annotation">@Override</span>
-    <span class="directive">public</span> CommandResult executeUndoableCommand() {
-        <span class="comment">// ... delete logic ...</span>
-    }
-}</code></pre>
-</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add a <code>RemarkCommand</code> that extends <a href="{repoURL}/src/main/java/seedu/address/logic/commands/UndoableCommand.java"><code>UndoableCommand</code></a>. Upon execution, it should just throw an <code>Exception</code>.</p>
+</li>
+<li>
+<p>Modify <a href="{repoURL}/src/main/java/seedu/address/logic/parser/AddressBookParser.java"><code>AddressBookParser</code></a> to accept a <code>RemarkCommand</code>.</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
-<p>Suppose that the user has just launched the application. The <code>UndoRedoStack</code> will be empty at the beginning.</p>
+<p><strong>Tests:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add <code>RemarkCommandTest</code> that tests that <code>executeUndoableCommand()</code> throws an Exception.</p>
+</li>
+<li>
+<p>Add new test method to <a href="{repoURL}/src/test/java/seedu/address/logic/parser/AddressBookParserTest.java"><code>AddressBookParserTest</code></a>, which tests that typing "remark" returns an instance of <code>RemarkCommand</code>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="step-2-logic-teach-the-app-to-accept-remark-arguments"><a class="link" href="#step-2-logic-teach-the-app-to-accept-remark-arguments">[Step 2] Logic: Teach the app to accept 'remark' arguments</a></h5>
+<div class="paragraph">
+<p>Let&#8217;s teach the application to parse arguments that our <code>remark</code> command will accept. E.g. <code>1 r/Likes to drink coffee.</code></p>
 </div>
 <div class="paragraph">
-<p>The user executes a new <code>UndoableCommand</code>, <code>delete 5</code>, to delete the 5th person in the address book. The current state of the address book is saved before the <code>delete 5</code> command executes. The <code>delete 5</code> command will then be pushed onto the <code>undoStack</code> (the current state is saved together with the command).</p>
+<p><strong>Main:</strong></p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UndoRedoStartingStackDiagram.png" alt="UndoRedoStartingStackDiagram" width="800">
-</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Modify <code>RemarkCommand</code> to take in an <code>Index</code> and <code>String</code> and print those two parameters as the error message.</p>
+</li>
+<li>
+<p>Add <code>RemarkCommandParser</code> that knows how to parse two arguments, one index and one with prefix 'r/'.</p>
+</li>
+<li>
+<p>Modify <a href="{repoURL}/src/main/java/seedu/address/logic/parser/AddressBookParser.java"><code>AddressBookParser</code></a> to use the newly implemented <code>RemarkCommandParser</code>.</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
-<p>As the user continues to use the program, more commands are added into the <code>undoStack</code>. For example, the user may execute <code>add n/David &#8230;&#8203;</code> to add a new person.</p>
+<p><strong>Tests:</strong></p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UndoRedoNewCommand1StackDiagram.png" alt="UndoRedoNewCommand1StackDiagram" width="800">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Modify <code>RemarkCommandTest</code> to test the <code>RemarkCommand#equals()</code> method.</p>
+</li>
+<li>
+<p>Add <code>RemarkCommandParserTest</code> that tests different boundary values
+for <code>RemarkCommandParser</code>.</p>
+</li>
+<li>
+<p>Modify <a href="{repoURL}/src/test/java/seedu/address/logic/parser/AddressBookParserTest.java"><code>AddressBookParserTest</code></a> to test that the correct command is generated according to the user input.</p>
+</li>
+</ol>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
+<div class="sect4">
+<h5 id="step-3-ui-add-a-placeholder-for-remark-in-code-personcard-code"><a class="link" href="#step-3-ui-add-a-placeholder-for-remark-in-code-personcard-code">[Step 3] Ui: Add a placeholder for remark in <code>PersonCard</code></a></h5>
+<div class="paragraph">
+<p>Let&#8217;s add a placeholder on all our <a href="{repoURL}/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a> s to display a remark for each person later.</p>
+</div>
+<div class="paragraph">
+<p><strong>Main:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add a <code>Label</code> with any random text inside <a href="{repoURL}/src/main/resources/view/PersonListCard.fxml"><code>PersonListCard.fxml</code></a>.</p>
+</li>
+<li>
+<p>Add FXML annotation in <a href="{repoURL}/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a> to tie the variable to the actual label.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Tests:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Modify <a href="{repoURL}/src/test/java/guitests/guihandles/PersonCardHandle.java"><code>PersonCardHandle</code></a> so that future tests can read the contents of the remark label.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="step-4-model-add-code-remark-code-class"><a class="link" href="#step-4-model-add-code-remark-code-class">[Step 4] Model: Add <code>Remark</code> class</a></h5>
+<div class="paragraph">
+<p>We have to properly encapsulate the remark in our <a href="{repoURL}/src/main/java/seedu/address/model/person/ReadOnlyPerson.java"><code>ReadOnlyPerson</code></a> class. Instead of just using a <code>String</code>, let&#8217;s follow the conventional class structure that the codebase already uses by adding a <code>Remark</code> class.</p>
+</div>
+<div class="paragraph">
+<p><strong>Main:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add <code>Remark</code> to model component (you can copy from <a href="{repoURL}/src/main/java/seedu/address/model/person/Address.java"><code>Address</code></a>, remove the regex and change the names accordingly).</p>
+</li>
+<li>
+<p>Modify <code>RemarkCommand</code> to now take in a <code>Remark</code> instead of a <code>String</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Tests:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add test for <code>Remark</code>, to test the <code>Remark#equals()</code> method.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="step-5-model-modify-code-readonlyperson-code-to-support-a-code-remark-code-field"><a class="link" href="#step-5-model-modify-code-readonlyperson-code-to-support-a-code-remark-code-field">[Step 5] Model: Modify <code>ReadOnlyPerson</code> to support a <code>Remark</code> field</a></h5>
+<div class="paragraph">
+<p>Now we have the <code>Remark</code> class, we need to actually use it inside <a href="{repoURL}/src/main/java/seedu/address/model/person/ReadOnlyPerson.java"><code>ReadOnlyPerson</code></a>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Main:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add three methods <code>setRemark(Remark)</code>, <code>getRemark()</code> and <code>remarkProperty()</code>. Be sure to implement these newly created methods in <a href="{repoURL}/src/main/java/seedu/address/model/person/ReadOnlyPerson.java"><code>Person</code></a>, which implements the <a href="{repoURL}/src/main/java/seedu/address/model/person/ReadOnlyPerson.java"><code>ReadOnlyPerson</code></a> interface.</p>
+</li>
+<li>
+<p>You may assume that the user will not be able to use the <code>add</code> and <code>edit</code> commands to modify the remarks field (i.e. the person will be created without a remark).</p>
+</li>
+<li>
+<p>Modify <a href="{repoURL}/src/main/java/seedu/address/model/util/SampleDataUtil.java/"><code>SampleDataUtil</code></a> to add remarks for the sample data (delete your <code>addressBook.xml</code> so that the application will load the sample data when you launch it.)</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="step-6-storage-add-code-remark-code-field-to-code-xmladaptedperson-code-class"><a class="link" href="#step-6-storage-add-code-remark-code-field-to-code-xmladaptedperson-code-class">[Step 6] Storage: Add <code>Remark</code> field to <code>XmlAdaptedPerson</code> class</a></h5>
+<div class="paragraph">
+<p>We now have <code>Remark</code> s for <code>Person</code> s, but they will be gone when we exit the application. Let&#8217;s modify <a href="{repoURL}/src/main/java/seedu/address/storage/XmlAdaptedPerson.java"><code>XmlAdaptedPerson</code></a> to include a <code>Remark</code> field so that it will be saved.</p>
+</div>
+<div class="paragraph">
+<p><strong>Main:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add a new Xml field for <code>Remark</code>.</p>
+</li>
+<li>
+<p>Be sure to modify the logic of the constructor and <code>toModelType()</code>, which handles the conversion to/from  <a href="{repoURL}/src/main/java/seedu/address/model/person/ReadOnlyPerson.java"><code>ReadOnlyPerson</code></a>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Tests:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Fix <code>validAddressBook.xml</code> such that the XML tests will not fail due to a missing <code>&lt;remark&gt;</code> element.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="step-7-ui-connect-code-remark-code-field-to-code-personcard-code"><a class="link" href="#step-7-ui-connect-code-remark-code-field-to-code-personcard-code">[Step 7] Ui: Connect <code>Remark</code> field to <code>PersonCard</code></a></h5>
+<div class="paragraph">
+<p>Our remark label in <a href="{repoURL}/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a> is still a placeholder. Let&#8217;s bring it to life by binding it with the actual <code>remark</code> field.</p>
+</div>
+<div class="paragraph">
+<p><strong>Main:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Modify <a href="{repoURL}/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard#bindListeners()</code></a> to add the binding for <code>remark</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Tests:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Modify <a href="{repoURL}/src/test/java/seedu/address/ui/testutil/GuiTestAssert.java"><code>GuiTestAssert#assertCardDisplaysPerson(&#8230;&#8203;)</code></a> so that it will compare the remark label.</p>
+</li>
+<li>
+<p>In <a href="{repoURL}/src/test/java/seedu/address/ui/PersonCardTest.java"><code>PersonCardTest</code></a>, call <code>personWithTags.setRemark(ALICE.getRemark())</code> to test that changes in the <a href="{repoURL}/src/main/java/seedu/address/model/person/ReadOnlyPerson.java"><code>Person</code></a> 's remark correctly updates the corresponding <a href="{repoURL}/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="step-8-logic-implement-code-remarkcommand-execute-code-logic"><a class="link" href="#step-8-logic-implement-code-remarkcommand-execute-code-logic">[Step 8] Logic: Implement <code>RemarkCommand#execute()</code> logic</a></h5>
+<div class="paragraph">
+<p>We now have everything set up&#8230;&#8203; but we still can&#8217;t modify the remarks. Let&#8217;s finish it up by adding in actual logic for our <code>remark</code> command.</p>
+</div>
+<div class="paragraph">
+<p><strong>Main:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Replace the logic in <code>RemarkCommand#execute()</code> (that currently just throws an <code>Exception</code>), with the actual logic to modify the remarks of a person.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Tests:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Update <code>RemarkCommandTest</code> to test that the <code>execute()</code> logic works.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="full-solution"><a class="link" href="#full-solution">Full Solution</a></h4>
+<div class="paragraph">
+<p>See this <a href="https://github.com/se-edu/addressbook-level4/pull/599">PR</a> for the step-by-step solution.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="user-stories"><a class="link" href="#user-stories">Appendix A: User Stories</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Priorities: High (must have) - <code>* * *</code>, Medium (nice to have) - <code>* *</code>, Low (unlikely to have) - <code>*</code></p>
+</div>
+<table class="tableblock frame-all grid-all" style="width: 59%;">
+<colgroup>
+<col style="width: 22%;">
+<col style="width: 23%;">
+<col style="width: 25%;">
+<col style="width: 30%;">
+</colgroup>
+<thead>
 <tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If a command fails its execution, it will not be pushed to the <code>UndoRedoStack</code> at all.
-</td>
+<th class="tableblock halign-left valign-top">Priority</th>
+<th class="tableblock halign-left valign-top">As a &#8230;&#8203;</th>
+<th class="tableblock halign-left valign-top">I want to &#8230;&#8203;</th>
+<th class="tableblock halign-left valign-top">So that I can&#8230;&#8203;</th>
 </tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">new user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">see usage instructions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">refer to instructions when I forget how to use the App</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add a new person</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">delete a person</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">remove entries that I no longer need</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">find a person by name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">locate details of persons without having to go through the entire list</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">edit their contact details</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I do not have to delete and create a new contact</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">edit my own contact details</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can make changes/correct my errors</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add/edit a tag pegged to my contact</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can update the tags if necessary</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">undo and redo my last action</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can recover from my mistakes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">create groups</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can sort my contacts according to social context</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sort and find according to tags/social groups/name/dob</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can conveniently look out for specific tags/identify categories</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">log in to access the addressbook</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">only I can access the addressbook</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">list the names only in my addresbook</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I don&#8217;t have to see all the details of every person I am not interested in</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">search for users by other fields (e.g. email/address/contact number)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can quickly access contact by other identifiable attributes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">open a save file in another directory</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can have multiple addressbooks and share with other users</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">change the color scheme/UI elements of the addressbook</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can select a color/font that suits my preference</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">export and import my contact details</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can share the contact details</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">share a contact card (that is exported) with another user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can easily share with a click of a button and avoid manual sharing</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add my contact&#8217;s birthday details</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can keep track of my contact&#8217;s birthdays</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">be reminded of my contact&#8217;s birthday</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can remember their birthdays easily</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add social media links for me and my contacts</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">We can connect socially</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">view my contact&#8217;s social media profiles link</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can easily connect with them if I have not already done so</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">use alias for shorthand for commands</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I don&#8217;t have to type all the commands every time I use it</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">auto-complete the commands</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can be efficient and not worry about entering wrong commands</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">edit their details without including prefix</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can conveniently edit a person without having to include tags every time</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">share a contact with another user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can easily share with a share file and avoid manual sharing</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">hide <a href="#private-contact-detail">private contact details</a> by default</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">minimize chance of someone else seeing them by accident</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">know how to get to my contact&#8217;s address from my current location on Google maps</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I know which route to take to get there</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">message/create online groups (e.g. Google Doc/Telegram) for contacts in my list</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I do not have to copy/paste/manually enter their details</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">log in with my Facebook/Google account</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I do not have to enter my username/password</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">send feedback to the developer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can give suggestion on how to improve the current app</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add an event to the addressbook</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can easily save appointments to the addressbook&#8217;s calendar</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">store my addressbook in the cloud</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can access my addressbook from any device</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user with many persons in the address book</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sort persons by name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">locate a person easily</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">see how my friends are interconnected</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can know who are our mutual friends</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">see my contact&#8217;s social media updates</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I keep up with their activities</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">execute commands with my voice</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can search for contacts without having to touch the keyboard</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">interact with the GUI in natural language</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I do not have to remember the commands</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">have the option to customize my addressbook</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can have the flexibility of deciding which features I need</p></td>
+</tr>
+</tbody>
 </table>
 </div>
+</div>
+<div class="sect1">
+<h2 id="use-cases"><a class="link" href="#use-cases">Appendix B: Use Cases</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>The user now decides that adding the person was a mistake, and decides to undo that action using <code>undo</code>.</p>
+<p>(For all use cases below, the <strong>System</strong> is the <code>AddressBook</code> and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
+</div>
+<h3 id="use-case-help" class="discrete">Use case: Help</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests for help guide</p>
+</li>
+<li>
+<p>AddressBook shows list of commands (help page) on a new window</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<h3 id="use-case-add-person" class="discrete">Use case: Add person</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to add a person with the person’s name, phone, email, address , and (optional) tags</p>
+</li>
+<li>
+<p>AddressBook adds the person</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
 </div>
 <div class="paragraph">
-<p>We will pop the most recent command out of the <code>undoStack</code> and push it back to the <code>redoStack</code>. We will restore the address book to the state before the <code>add</code> command executed.</p>
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. The person already exists</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a1. AddressBook shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>2b. The added person has missing details</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2b1. AddressBook shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>2c. The added person has wrong entry format</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2c1. AddressBook shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-list" class="discrete">Use case: List</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to list persons</p>
+</li>
+<li>
+<p>AddressBook shows a list of persons</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. The list is empty</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-edit-person" class="discrete">Use case: Edit person</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to list persons</p>
+</li>
+<li>
+<p>AddressBook shows a list of persons</p>
+</li>
+<li>
+<p>User requests to edit a specific person in the list</p>
+</li>
+<li>
+<p>AddressBook edits the person and shows the updated list of persons</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. The list is empty.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+<li>
+<p>3a. The given index is invalid.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3a1. AddressBook shows an error message.</p>
+<div class="paragraph">
+<p>Use case resumes at step 2.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>3b. No field is edited or input format is wrong.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3a1. AddressBook shows an error message.</p>
+<div class="paragraph">
+<p>Use case resumes at step 2.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-find-person" class="discrete">Use case: Find person</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to find a person by name</p>
+</li>
+<li>
+<p>AddressBook shows a list of persons having the same name entered by user</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. AddressBook doesn&#8217;t have the entered name.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a1. AddressBook shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-delete-person" class="discrete">Use case: Delete person</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to list persons</p>
+</li>
+<li>
+<p>AddressBook shows a list of persons</p>
+</li>
+<li>
+<p>User requests to delete a specific person in the list</p>
+</li>
+<li>
+<p>AddressBook deletes the person</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. The list is empty.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+<li>
+<p>3a. The given index is invalid.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3a1. AddressBook shows an error message.</p>
+<div class="paragraph">
+<p>Use case resumes at step 2.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-select-person" class="discrete">Use case: Select person</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to list persons</p>
+</li>
+<li>
+<p>AddressBook shows a list of persons</p>
+</li>
+<li>
+<p>User requests to select a specific person in the list</p>
+</li>
+<li>
+<p>AddressBook selects the person</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. The list is empty.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+<li>
+<p>3a. The given index is invalid.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3a1. AddressBook shows an error message.</p>
+<div class="paragraph">
+<p>Use case resumes at step 2.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-history" class="discrete">Use case: History</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests show history of previous commands</p>
+</li>
+<li>
+<p>AddressBook shows history of previous commands since the programme started</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<h3 id="use-case-undo" class="discrete">Use case: Undo</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to undo previous command</p>
+</li>
+<li>
+<p>AddressBook undo previous command</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. There is no undoable command.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a1. AddressBook shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-redo" class="discrete">Use case: Redo</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to redo previous undid command</p>
+</li>
+<li>
+<p>AddressBook redo previous command</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. There is no redoable undid command.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a1. AddressBook shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-clear" class="discrete">Use case: Clear</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to delete all existing persons</p>
+</li>
+<li>
+<p>AddressBook delete all persons</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<h3 id="use-case-exit" class="discrete">Use case: Exit</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to exit the programme</p>
+</li>
+<li>
+<p>AddressBook exits</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="non-functional-requirements"><a class="link" href="#non-functional-requirements">Appendix C: Non Functional Requirements</a></h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Should work on any <a href="#mainstream-os">mainstream OS</a> as long as it has Java <code>1.8.0_60</code> or higher installed.</p>
+</li>
+<li>
+<p>Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.</p>
+</li>
+<li>
+<p>A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.</p>
+</li>
+<li>
+<p>The UI color scheme should be color-blind friendly.</p>
+</li>
+<li>
+<p>The UI must abide by the 5 design principles - Visibility, Feedback, Constraints, Mapping, Consistency and Affordance.</p>
+</li>
+<li>
+<p>The documentation should be well maintained, and written in plain and simple to understand English such that other developers can easily read and understand.</p>
+</li>
+<li>
+<p>The system should not take longer than 3 seconds to execute a command.</p>
+</li>
+<li>
+<p>The project is expected to adhere to a schedule that delivers at least an improvement (size of improvement does not matter) on a weekly basis.</p>
+</li>
+<li>
+<p>Every additional feature/improvement should have comprehensive tests written to ensure error-free code.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="glossary"><a class="link" href="#glossary">Appendix D: Glossary</a></h2>
+<div class="sectionbody">
+<div id="mainstream-os" class="paragraph">
+<p>Mainstream OS</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Windows, Linux, Unix, OS-X</pre>
+</div>
+</div>
+<div id="private-contact-detail" class="paragraph">
+<p>Private contact detail</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>A contact detail that is not meant to be shared with others</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="product-survey"><a class="link" href="#product-survey">Appendix E: Product Survey</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Product Name</strong></p>
+</div>
+<div class="paragraph">
+<p>Author: &#8230;&#8203;</p>
+</div>
+<div class="paragraph">
+<p>Pros:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>&#8230;&#8203;</p>
+</li>
+<li>
+<p>&#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Cons:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>&#8230;&#8203;</p>
+</li>
+<li>
+<p>&#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect2">
+<h3 id="enhancement-added-code-search-code-command"><a class="link" href="#enhancement-added-code-search-code-command">Enhancement Added: <code>search</code> Command</a></h3>
+<div class="sect3">
+<h4 id="external-behavior-2"><a class="link" href="#external-behavior-2">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p>Similar to the <code>find</code> command.
+This comand searches for persons whose details contain the given keyphrase
+Format: <code>search [keyphrase]</code></p>
+</div>
+<div class="paragraph">
+<p><mark>Start of Extract [from: UserGuide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="locating-persons-by-details-code-search-code"><a class="link" href="#locating-persons-by-details-code-search-code">Locating persons by details: <code>search</code></a></h3>
+<div class="paragraph">
+<p>Finds persons whose details contain any of the given keywords.<br>
+Format: <code>search KEYPHRASE</code><br>
+Shorthand for search: <code>sh</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code></p>
+</li>
+<li>
+<p>Keyphrase can be separated by spaces.</p>
+</li>
+<li>
+<p>The order of the keyphrase matters. e.g. <code>Hans Bo</code> will match <code>Hans Bo</code></p>
+</li>
+<li>
+<p>Name, Phone, Email, Address, Remark, Tag are all searched.</p>
+</li>
+<li>
+<p>Full or partial words will be matched e.g. <code>Han</code> will match <code>Hans Solo</code></p>
+</li>
+<li>
+<p>Persons matching the keyphrase will be returned. e.g. <code>@gmail.com</code> will return <code>HansGruber@gmail.com</code>, <code>BoYang@gmail.com</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>search John</code><br>
+Returns <code>john</code> and <code>John Doe</code></p>
+</li>
+<li>
+<p><code>search joHn dOe</code><br>
+Returns any person having names <code>John Doe</code></p>
+</li>
+<li>
+<p><code>search mate</code><br>
+Returns any person with details that matches <code>mate</code> such as <code>classmate</code> in tags.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Since v1.2.</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification-2"><a class="link" href="#justification-2">Justification</a></h4>
+<div class="paragraph">
+<p><code>Search</code> is similar to <code>find</code>, but is more extensive. Instead of looking only at the name of the person in the addressbook, every other detail is checked. This might be useful when users are trying to search for persons who live in a particular location (e.g. search Clementi Road), or for persons who have gmail accounts (e.g. search @gmail.com). From a user experience perspective, there is high degree of consistency between this search command and the search command users would expect of web browsers, word processors and the likes.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-2"><a class="link" href="#implementation-2">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="search-mechanism"><a class="link" href="#search-mechanism">Search mechanism</a></h3>
+<div class="paragraph">
+<p>The search mechanism is very similar to find and relies on the predicate <code>DetailsContainKeyphrasePredicate</code>. This function allows users to search for persons whose details matches the keyphrase, case-insensitive. In other words, if any aspect of a person&#8217;s details (i.e. Name, Phone, Email, Address, Remark or Tag) contains exactly the keyphrase (inclusive of spaces and special characters) as a subsequence, the person(s) will be listed.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/UndoRedoExecuteUndoStackDiagram.png" alt="UndoRedoExecuteUndoStackDiagram" width="800">
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If the <code>undoStack</code> is empty, then there are no other commands left to be undone, and an <code>Exception</code> will be thrown when popping the <code>undoStack</code>.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The following sequence diagram shows how the undo operation works:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UndoRedoSequenceDiagram.png" alt="UndoRedoSequenceDiagram" width="800">
+<img src="../images/SearchCommandSequenceDiagram.png" alt="SearchCommandSequenceDiagram" width="800">
 </div>
 </div>
 <div class="paragraph">
-<p>The redo does the exact opposite (pops from <code>redoStack</code>, push to <code>undoStack</code>, and restores the address book to the state after the command is executed).</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If the <code>redoStack</code> is empty, then there are no other commands left to be redone, and an <code>Exception</code> will be thrown when popping the <code>redoStack</code>.
-</td>
-</tr>
-</table>
+<p><em>Figure 3.2.1 : Sequence Diagram of the Search Command</em></p>
 </div>
 <div class="paragraph">
-<p>The user now decides to execute a new command, <code>clear</code>. As before, <code>clear</code> will be pushed into the <code>undoStack</code>. This time the <code>redoStack</code> is no longer empty. It will be purged as it no longer make sense to redo the <code>add n/David</code> command (this is the behavior that most modern desktop applications follow).</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UndoRedoNewCommand2StackDiagram.png" alt="UndoRedoNewCommand2StackDiagram" width="800">
-</div>
+<p>When the <code>search</code> command (or alias: <code>sh</code>) is being entered, followed by a non-empty keyphrase, <code>AddressBookParser</code> in <code>LogicManager</code> will return a <code>SearchCommandParser</code>, which will parse the keyphrase. The keyphrase will have trailing and preceding white spaces removed, and be ensured that it is not empty String. The parser will return a <code>SearchCommand</code> object, with a <code>DetailsContainKeyphrasePredicate</code> as its argument.</p>
 </div>
 <div class="paragraph">
-<p>Commands that are not undoable are not added into the <code>undoStack</code>. For example, <code>list</code>, which inherits from <code>Command</code> rather than <code>UndoableCommand</code>, will not be added after execution:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UndoRedoNewCommand3StackDiagram.png" alt="UndoRedoNewCommand3StackDiagram" width="800">
-</div>
+<p><code>DetailsContainKeyphrasePredicate</code> implements a <code>Predicate &lt;ReadOnlyPerson&gt;</code> interface. <code>DetailsContainKeyphrasePredicate#test(ReadOnlyPerson person)</code> will be use to test if a Person&#8217;s details contain the keyphrase. Within <code>DetailsContainKeyphrasePredicate#test(ReadOnlyPerson person), a private method would be used to check each aspect of a Person (e.g. Name, Phone, Address etc.) to ensure readability. Since `String#contain</code> is case-sensitive, a case-insensitive method to check is required. <code>StringUtil#caseInsensitiveContains(Person person, String keyphrase)</code> converts both the Person&#8217;s attribute value and keyphrase to lowercase, and proceeds to use <code>String#contain</code> to ensure case-insensitivity.</p>
 </div>
 <div class="paragraph">
-<p>The following activity diagram summarize what happens inside the <code>UndoRedoStack</code> when a user executes a new command:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UndoRedoActivityDiagram.png" alt="UndoRedoActivityDiagram" width="200">
-</div>
+<p>After a <code>SearchCommand</code> is returned to the <code>LogicManager</code>, it will be executed. The method will call the model&#8217;s <code>updateFileredPersonList</code> method, which will list every Person that passes <code>DetailsContainKeyphrasePredicate#test</code>, and update the model accordingly. A successful command message will be returned if there are no errors thrown and the UI will update accordingly.</p>
 </div>
 <div class="sect3">
 <h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
 <div class="paragraph">
-<p><strong>Aspect:</strong> Implementation of <code>UndoableCommand</code><br>
-<strong>Alternative 1 (current choice):</strong> Add a new abstract method <code>executeUndoableCommand()</code><br>
-<strong>Pros:</strong> We will not lose any undone/redone functionality as it is now part of the default behaviour. Classes that deal with <code>Command</code> do not have to know that <code>executeUndoableCommand()</code> exist.<br>
-<strong>Cons:</strong> Hard for new developers to understand the template pattern.<br>
-<strong>Alternative 2:</strong> Just override <code>execute()</code><br>
-<strong>Pros:</strong> Does not involve the template pattern, easier for new developers to understand.<br>
-<strong>Cons:</strong> Classes that inherit from <code>UndoableCommand</code> must remember to call <code>super.execute()</code>, or lose the ability to undo/redo.</p>
+<p><strong>Aspect:</strong> What to be searched for<br>
+<strong>Alternative 1 (current choice):</strong> Include all aspects of Persons to be searched for<br>
+<strong>Pros:</strong> Users can search for users by other fields instead of name<br>
+<strong>Cons:</strong> The search result may be too much for user to process, especially when common sequence of alphabets are entered (e.g. ".com")<br>
+<strong>Alternative 2:</strong> Search only for selected fields<br>
+<strong>Pros:</strong> Reduces the amount of search results for the user<br>
+<strong>Cons:</strong> There is no consistency (design principle) with the mental concept of search that is currently used by applications such as Microsoft Word and Internet Browsers.</p>
 </div>
 <hr>
 <div class="paragraph">
-<p><strong>Aspect:</strong> How undo &amp; redo executes<br>
-<strong>Alternative 1 (current choice):</strong> Saves the entire address book.<br>
-<strong>Pros:</strong> Easy to implement.<br>
-<strong>Cons:</strong> May have performance issues in terms of memory usage.<br>
-<strong>Alternative 2:</strong> Individual command knows how to undo/redo by itself.<br>
-<strong>Pros:</strong> Will use less memory (e.g. for <code>delete</code>, just save the person being deleted).<br>
-<strong>Cons:</strong> We must ensure that the implementation of each individual command are correct.</p>
-</div>
-<hr>
-<div class="paragraph">
-<p><strong>Aspect:</strong> Type of commands that can be undone/redone<br>
-<strong>Alternative 1 (current choice):</strong> Only include commands that modifies the address book (<code>add</code>, <code>clear</code>, <code>edit</code>).<br>
-<strong>Pros:</strong> We only revert changes that are hard to change back (the view can easily be re-modified as no data are lost).<br>
-<strong>Cons:</strong> User might think that undo also applies when the list is modified (undoing filtering for example), only to realize that it does not do that, after executing <code>undo</code>.<br>
-<strong>Alternative 2:</strong> Include all commands.<br>
-<strong>Pros:</strong> Might be more intuitive for the user.<br>
-<strong>Cons:</strong> User have no way of skipping such commands if he or she just want to reset the state of the address book and not the view.<br>
-<strong>Additional Info:</strong> See our discussion  <a href="https://github.com/se-edu/addressbook-level4/issues/390#issuecomment-298936672">here</a>.</p>
-</div>
-<hr>
-<div class="paragraph">
-<p><strong>Aspect:</strong> Data structure to support the undo/redo commands<br>
-<strong>Alternative 1 (current choice):</strong> Use separate stack for undo and redo<br>
-<strong>Pros:</strong> Easy to understand for new Computer Science student undergraduates to understand, who are likely to be the new incoming developers of our project.<br>
-<strong>Cons:</strong> Logic is duplicated twice. For example, when a new command is executed, we must remember to update both <code>HistoryManager</code> and <code>UndoRedoStack</code>.<br>
-<strong>Alternative 2:</strong> Use <code>HistoryManager</code> for undo/redo<br>
-<strong>Pros:</strong> We do not need to maintain a separate stack, and just reuse what is already in the codebase.<br>
-<strong>Cons:</strong> Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as <code>HistoryManager</code> now needs to do two different things.<br></p>
+<p><strong>Aspect:</strong> How to search<br>
+<strong>Alternative 1 (current choice):</strong> Use <code>DetailsContainKeyphrasePredicate</code><br>
+<strong>Pros:</strong> <code>DetailsContainKeyphrasePredicate</code> is similar to <code>NameContainsKeywordsPredicate</code> used by FindCommand and therefore easier to implement<br>
+<strong>Cons:</strong> Polymorphism may be employed instead of using separate classes for functions that are similar<br>
+<strong>Alternative 2:</strong> Let <code>DetailsContainKeyphrasePredicate</code> inherit <code>NameContainsKeywordsPredicate</code><br>
+<strong>Pros:</strong> Easier for developers to override and add methods<br>
+<strong>Cons:</strong> Internal attributes are of different types and it might be more cumbersome to manipulate the data type.</p>
 </div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
@@ -331,38 +1298,162 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="enhancement-proposed-add-command-code-remark-code"><a class="link" href="#enhancement-proposed-add-command-code-remark-code">Enhancement Proposed: Add command <code>remark</code></a></h3>
+<h3 id="enhancement-added-code-login-code-command"><a class="link" href="#enhancement-added-code-login-code-command">Enhancement Added: <code>login</code> Command</a></h3>
+<div class="sect3">
+<h4 id="external-behavior-3"><a class="link" href="#external-behavior-3">External behavior</a></h4>
+<hr>
 <div class="paragraph">
-<p>{Explain similar to the Undo/Redo feature above.}</p>
+<p>Authenticates the current user before giving read or write access.
+Format: <code>login [usr/username] [pwd/password]</code></p>
 </div>
+<div class="paragraph">
+<p><mark>Start of Extract [from: UserGuide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="logging-in-code-login-code"><a class="link" href="#logging-in-code-login-code">Logging in : <code>login</code></a></h3>
+<div class="paragraph">
+<p>Validates the current user before executing commands.<br>
+Format: <code>login</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Default username: admin
+Default password: password
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+User must be logged in before executing commands.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Format:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>`login usr/[enter username] pwd/[enter password]</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Since v1.3.</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification-3"><a class="link" href="#justification-3">Justification</a></h4>
+<div class="paragraph">
+<p>Since this address book stores personal information about people, there should be some degree of security and privacy protection when it comes to using this address book. Therefore, without logging in, a user may not see or modify the contents of the address book.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-3"><a class="link" href="#implementation-3">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-profile-picture-for-contact"><a class="link" href="#enhancement-added-profile-picture-for-contact">Enhancement Added: Profile picture for contact</a></h3>
+<div class="sect3">
+<h4 id="external-behavior-4"><a class="link" href="#external-behavior-4">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p>Contacts in the address book will now be assigned to their profile pictures used on Facebook, if any. Otherwise, a default image would be used. The contact&#8217;s Facebook id has to be saved before the retrieval is possible.</p>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="justification-4"><a class="link" href="#justification-4">Justification</a></h4>
+<div class="paragraph">
+<p>As this address book is meant for University students to store their contacts, it is expected to store a significant number of contacts. As such, it might be difficult to visually recognize and identify contacts solely by the words and their contact information. Moreover, this visual search may be demanding especially when contacts share the same first names. Therefore, by having a contact image, the user would be able to quickly identify their target contact.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-4"><a class="link" href="#implementation-4">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="contact-profile-picture"><a class="link" href="#contact-profile-picture">Contact Profile Picture</a></h3>
+<div class="paragraph">
+<p>We are using <code>facebook4j</code> package as a wrapper to access Facebook&#8217;s Graph API. The <code>Facebook</code> class is used as an API to access the methods.</p>
+</div>
+<div class="paragraph">
+<p>This class is used only in <code>PersonProfile</code> class, where there is a need to retrieve a contact&#8217;s profile picture from Facebook to use as a contact profile picture. The method <code>facebook#getPictureURL(String userId, PictureSize size)</code> is used to retrieve a larger image from Facebook.</p>
+</div>
+<div class="paragraph">
+<p>[Note] The application is currently authorized with an application token that will expire in 2 months.</p>
+</div>
+<div class="paragraph">
+<p>In the event that an image cannot be retrieved from Facebook, a default image stored locally would be used as the contact&#8217;s profile picture.</p>
+</div>
+<div class="paragraph">
+<p><strong>Aspect</strong> Retrieving a user&#8217;s Facebook profile picture<br>
+<strong>Alternative 1 (temporary fix)</strong>: Hard code a Facebook userId, which will be used to retrieve a profile picture from the user.<br>
+<strong>Alternative 2</strong>: Figure out how to retrieve userId from a Facebook user&#8217;s username or url.<br>
+<strong>Alternative 3</strong>: Introduce another 3rd party library that returns a userId from a username<br>
+<strong>Pros</strong>: Able to quickly prototype with the temporary fix<br>
+<strong>Cons</strong>: The profile picture does not match the actual contact</p>
+</div>
+<div class="paragraph">
+<p><strong>Aspect</strong> Facebook Authentication<br>
+<strong>Alternative 1 (current choice)</strong>: Create a Facebook application and store the app id, app secret and token in the <code>PersonProfile</code> class.<br>
+<strong>Alternative 2</strong>: Get users to log in with their own Facebook accounts and grant permission<br>
+<strong>Pros</strong>: Hassle free for users<br>
+<strong>Cons</strong>: The app id, app secret and token are stored in the open, which may pose security issues.</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
 </div>
 <div class="sect2">
 <h3 id="other-contributions"><a class="link" href="#other-contributions">Other contributions</a></h3>
 <div class="ulist">
 <ul>
 <li>
-<p>Updated the GUI color scheme (Pull requests <a href="https://github.com">#33</a>, <a href="https://github.com">#34</a>)</p>
+<p>Add non-functional requirements (Pull requests <a href="https://github.com/CS2103AUG2017-F11-B4/main/pull/4" class="bare">https://github.com/CS2103AUG2017-F11-B4/main/pull/4</a>)</p>
 </li>
 <li>
-<p>Wrote additional tests to increase coverage from 88% to 92% (Pull requests <a href="https://github.com">#36</a>, <a href="https://github.com">#38</a>)</p>
+<p>Designed UI mockup (Pull requests <a href="https://github.com/CS2103AUG2017-F11-B4/main/pull/19" class="bare">https://github.com/CS2103AUG2017-F11-B4/main/pull/19</a>)</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="project-powerpointlabs"><a class="link" href="#project-powerpointlabs">Project: PowerPointLabs</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>{Optionally (not graded), you may include other projects in your portfolio.}</p>
-</div>
-</div>
-</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-10 00:01:06 +00:00
+Last updated 2017-11-10 03:33:46 +00:00
 </div>
 </div>
 </body>
