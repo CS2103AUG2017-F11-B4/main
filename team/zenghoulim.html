@@ -22,7 +22,7 @@
 <p>AddressBook - Level 4 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 6 kLoC.</p>
 </div>
 <div class="paragraph">
-<p><strong>Code contributed</strong>: [<a href="https://github.com/CS2103AUG2017-F11-B4/main/blob/master/collated/main/zenghou.md">Functional code</a>] [<a href="https://github.com/CS2103AUG2017-F11-B4/main/blob/master/collated/test/zenghou.md">Test code</a>] {give links to collated code files}</p>
+<p><strong>Code contributed</strong>: [<a href="https://github.com/CS2103AUG2017-F11-B4/main/blob/master/collated/main/zenghou.md">Functional code</a>] [<a href="https://github.com/CS2103AUG2017-F11-B4/main/blob/master/collated/test/zenghou.md">Test code</a>]</p>
 </div>
 <div class="sect2">
 <h3 id="enhancement-added-code-remark-code-command"><a class="link" href="#enhancement-added-code-remark-code-command">Enhancement Added: <code>remark</code> Command</a></h3>
@@ -1119,6 +1119,22 @@ for <code>RemarkCommandParser</code>.</p>
 <pre>A contact detail that is not meant to be shared with others</pre>
 </div>
 </div>
+<div id="facebook-Id" class="paragraph">
+<p>Facebook Id</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>A unique integer assigned by Facebook to identify users</pre>
+</div>
+</div>
+<div id="user-credentials" class="paragraph">
+<p>User Credentials</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>The username and password of the current user, which will be used for authentication</pre>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -1178,7 +1194,8 @@ Format: <code>search [keyphrase]</code></p>
 <div class="sect2">
 <h3 id="locating-persons-by-details-code-search-code"><a class="link" href="#locating-persons-by-details-code-search-code">Locating persons by details: <code>search</code></a></h3>
 <div class="paragraph">
-<p>Finds persons whose details contain any of the given keywords.<br>
+<p>Similar to <code>find</code> command above, but more comprehensive<br>
+Finds persons whose details (any field e.g. name, email, address etc.) contain the exact keyphrase.<br>
 Format: <code>search KEYPHRASE</code><br>
 Shorthand for search: <code>sh</code></p>
 </div>
@@ -1190,7 +1207,7 @@ Shorthand for search: <code>sh</code></p>
 <p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code></p>
 </li>
 <li>
-<p>Keyphrase can be separated by spaces.</p>
+<p>Keyphrase can contain spaces.</p>
 </li>
 <li>
 <p>The order of the keyphrase matters. e.g. <code>Hans Bo</code> will match <code>Hans Bo</code></p>
@@ -1337,7 +1354,7 @@ Default password: password
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-User must be logged in before executing commands.
+User must be logged in before executing commands, with the exception of <code>help</code>, <code>exit</code> and of course, <code>login</code>.
 </td>
 </tr>
 </table>
@@ -1348,7 +1365,7 @@ User must be logged in before executing commands.
 <div class="ulist">
 <ul>
 <li>
-<p>`login usr/[enter username] pwd/[enter password]</p>
+<p><code>login usr/[enter username] pwd/[enter password]</code></p>
 </li>
 </ul>
 </div>
@@ -1370,6 +1387,57 @@ User must be logged in before executing commands.
 <hr>
 <div class="paragraph">
 <p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="user-login"><a class="link" href="#user-login">User Login</a></h3>
+<div class="paragraph">
+<p>We are currently using a simple authenticating method to validate users. In summary, the user&#8217;s username and password would be compared to the username and password stored in a file called <code>credentials.json</code>. More precisely, the password is stored as a hash value, using Java&#8217;s <code>String#hashCode()</code> method to prevent the password from being openly stored.</p>
+</div>
+<div class="paragraph">
+<p>Before the user is logged in, the user would not be able to execute any commands. In this version, the user is still able to view the loaded list of contacts. In V1.5, the addressbook will not be loaded until the user is logged in.</p>
+</div>
+<div class="paragraph">
+<p><strong>Mechanism</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/LoginCommandSequenceDiagram.png" alt="LoginCommandSequenceDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 3.5.1 : Sequence Diagram of the Login Command</em></p>
+</div>
+<div class="paragraph">
+<p>A <code>LoginCommandParser</code> parses a user&#8217;s username and password, and returns a <code>LoginCommand</code>. The username and password entered by the user would be encapsulated in a class <code>UserCreds</code>, which is a private attribute in the <code>LoginCommand</code>. When the <code>execute</code> method is called, the <code>UserCreds</code> attribute in the <code>LoginCommand</code> would be compared against the <code>UserCreds</code> in the model. The model gets <code>UserCreds</code> attribute by reading the JSON file <code>credentials.json</code>.</p>
+</div>
+<div class="paragraph">
+<p>Upon successful authentication, the attribute <code>isValidated</code> in the model&#8217;s <code>UserCreds</code> would be flagged to true. This change of attribute in <code>UserCreds</code> would be raised as an event called <code>indicateUserCredsChanged</code>. In version V1.5, this event would be transmitted using Google&#8217;s Event Bus to the UiManager, which will have a handler to make the necessary adjustments to the UI in response to the event.</p>
+</div>
+<div class="paragraph">
+<p>Before a <code>Command</code> is executed, the <code>LogicManager</code> check if the current user is validated using <code>model#getUserCreds()#isValidatedSession()</code>. Only <code>helpCommand</code>, <code>exitCommand</code>, and of course <code>loginCommand</code> will be executed when a user is currently not logged in. Otherwise, a <code>CommandException</code> will be thrown.</p>
+</div>
+<div class="paragraph">
+<p>In version 2.0, Address Book Pro should adopt an external security framework such as Apache Shiro to ensure more secure authentications.</p>
+</div>
+<div class="sect3">
+<h4 id="design-consideration"><a class="link" href="#design-consideration">Design Consideration</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Using an external library for more secure authentication<br>
+<strong>Alternative 1 (current choice):</strong>: Validate a user by checking username and password (hasCode) stored in json file.<br>
+<strong>Alternative 2:</strong>: Use an external library such as Apache Shiro.<br>
+<strong>Pros:</strong> Simple authentication without external libraries. Allows for quick iteration.<br>
+<strong>Cons: </strong>Primitive authentication which does not provide good security. Password hash can be cracked to reveal original password. JSON file is also susceptible to manipulations, which may alter the user&#8217;s saved username and password.<br></p>
+</div>
+<hr>
+<div class="paragraph">
+<p><strong>Aspect</strong> Changes to the GUI<br>
+<strong>Alternative 1:</strong> Allows users to view addressbook as it automatically loads.<br>
+<strong>Alternative 2 (current choice):</strong> Hides all panels except for CommandBox and ResultDisplay. Reveal other panels (e.g. PersonList) once user is logged in.<br>
+<strong>Alternative 3:</strong> Show all panles, but only load addressbook once user is logged in.<br>
+<strong>Pros:</strong> Unauthorized users are unable to view contact list prior to login<br>
+<strong>Cons:</strong> Login mechanism is coupled with existing UI of the address book; Future changes to UI may affect the login mechanism.</p>
 </div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
@@ -1410,21 +1478,23 @@ User must be logged in before executing commands.
 <p>This class is used only in <code>PersonProfile</code> class, where there is a need to retrieve a contact&#8217;s profile picture from Facebook to use as a contact profile picture. The method <code>facebook#getPictureURL(String userId, PictureSize size)</code> is used to retrieve a larger image from Facebook.</p>
 </div>
 <div class="paragraph">
-<p>[Note] The application is currently authorized with an application token that will expire in 2 months.</p>
+<p>[NOTE] The application is currently authorized with an application token that will expire in 2 months.<br>
+[NOTE] In V2.0, Address Book Pro should introduce Facebook user login and allow users to authenticate the application instead of storing application tokens.</p>
 </div>
 <div class="paragraph">
 <p>In the event that an image cannot be retrieved from Facebook, a default image stored locally would be used as the contact&#8217;s profile picture.</p>
 </div>
 <div class="paragraph">
-<p><strong>Aspect</strong> Retrieving a user&#8217;s Facebook profile picture<br>
+<p><strong>Aspect:</strong> Retrieving a user&#8217;s Facebook profile picture<br>
 <strong>Alternative 1 (temporary fix)</strong>: Hard code a Facebook userId, which will be used to retrieve a profile picture from the user.<br>
 <strong>Alternative 2</strong>: Figure out how to retrieve userId from a Facebook user&#8217;s username or url.<br>
 <strong>Alternative 3</strong>: Introduce another 3rd party library that returns a userId from a username<br>
-<strong>Pros</strong>: Able to quickly prototype with the temporary fix<br>
-<strong>Cons</strong>: The profile picture does not match the actual contact</p>
+<strong>Alternative 4 (Current Solution)</strong>: Get users to store their Facebook Id directly for immediate usage<br>
+<strong>Pros</strong>: A simple fix to easily retrieve a contact&#8217;s profile picture<br>
+<strong>Cons</strong>: Facebook IDs are not usually remembered by users and may require more effort to retrieve.</p>
 </div>
 <div class="paragraph">
-<p><strong>Aspect</strong> Facebook Authentication<br>
+<p><strong>Aspect:</strong> Facebook Authentication<br>
 <strong>Alternative 1 (current choice)</strong>: Create a Facebook application and store the app id, app secret and token in the <code>PersonProfile</code> class.<br>
 <strong>Alternative 2</strong>: Get users to log in with their own Facebook accounts and grant permission<br>
 <strong>Pros</strong>: Hassle free for users<br>
@@ -1453,7 +1523,7 @@ User must be logged in before executing commands.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 14:56:47 +00:00
+Last updated 2017-11-13 15:02:27 +00:00
 </div>
 </div>
 </body>

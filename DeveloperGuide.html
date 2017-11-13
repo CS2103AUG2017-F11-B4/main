@@ -922,14 +922,25 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <div class="paragraph">
 <p><strong>Mechanism</strong></p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/LoginCommandSequenceDiagram.png" alt="LoginCommandSequenceDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 3.5.1 : Sequence Diagram of the Login Command</em></p>
+</div>
 <div class="paragraph">
 <p>A <code>LoginCommandParser</code> parses a user&#8217;s username and password, and returns a <code>LoginCommand</code>. The username and password entered by the user would be encapsulated in a class <code>UserCreds</code>, which is a private attribute in the <code>LoginCommand</code>. When the <code>execute</code> method is called, the <code>UserCreds</code> attribute in the <code>LoginCommand</code> would be compared against the <code>UserCreds</code> in the model. The model gets <code>UserCreds</code> attribute by reading the JSON file <code>credentials.json</code>.</p>
 </div>
 <div class="paragraph">
-<p>Upon successful authentication, the attribute <code>isValidated</code> in the model&#8217;s <code>UserCreds</code> would be flagged to true. This change of attribute in <code>UserCreds</code> would be raised as an event called <code>indicateUserCredsChanged</code>. In version V1.4, this event would be transmitted using Google&#8217;s Event Bus to the UiManager, which will have a handler to make the necessary adjustments to the UI in response to the event.</p>
+<p>Upon successful authentication, the attribute <code>isValidated</code> in the model&#8217;s <code>UserCreds</code> would be flagged to true. This change of attribute in <code>UserCreds</code> would be raised as an event called <code>indicateUserCredsChanged</code>. In version V1.5, this event would be transmitted using Google&#8217;s Event Bus to the UiManager, which will have a handler to make the necessary adjustments to the UI in response to the event.</p>
 </div>
 <div class="paragraph">
-<p>Once the user is logged in, every <code>Command</code> will check if the current user is validated using <code>model#getUserCreds()#isValidatedSession()</code>. If the result is true, the <code>Command</code> will be executed. Otherwise, a <code>CommandException</code> will be thrown.</p>
+<p>Before a <code>Command</code> is executed, the <code>LogicManager</code> check if the current user is validated using <code>model#getUserCreds()#isValidatedSession()</code>. Only <code>helpCommand</code>, <code>exitCommand</code>, and of course <code>loginCommand</code> will be executed when a user is currently not logged in. Otherwise, a <code>CommandException</code> will be thrown.</p>
+</div>
+<div class="paragraph">
+<p>In version 2.0, Address Book Pro should adopt an external security framework such as Apache Shiro to ensure more secure authentications.</p>
 </div>
 <div class="sect3">
 <h4 id="design-consideration-2"><a class="link" href="#design-consideration-2">3.5.1. Design Consideration</a></h4>
@@ -943,11 +954,11 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <hr>
 <div class="paragraph">
 <p><strong>Aspect</strong> Changes to the GUI<br>
-<strong>Alternative 1 (current choice):</strong> Allows users to view addressbook as it automatically loads.<br>
-<strong>Alternative 2:</strong> Hides all panels except for CommandBox and ResultDisplay. Reveal other panels (e.g. PersonList) once user is logged in.<br>
+<strong>Alternative 1:</strong> Allows users to view addressbook as it automatically loads.<br>
+<strong>Alternative 2 (current choice):</strong> Hides all panels except for CommandBox and ResultDisplay. Reveal other panels (e.g. PersonList) once user is logged in.<br>
 <strong>Alternative 3:</strong> Show all panles, but only load addressbook once user is logged in.<br>
-<strong>Pros:</strong> No changes needed for GUI<br>
-<strong>Cons:</strong> Unauthorized users are still able to view the contact list, which may not be desirable</p>
+<strong>Pros:</strong> Unauthorized users are unable to view contact list prior to login<br>
+<strong>Cons:</strong> Login mechanism is coupled with existing UI of the address book; Future changes to UI may affect the login mechanism.</p>
 </div>
 </div>
 </div>
@@ -960,21 +971,23 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <p>This class is used only in <code>PersonProfile</code> class, where there is a need to retrieve a contact&#8217;s profile picture from Facebook to use as a contact profile picture. The method <code>facebook#getPictureURL(String userId, PictureSize size)</code> is used to retrieve a larger image from Facebook.</p>
 </div>
 <div class="paragraph">
-<p>[Note] The application is currently authorized with an application token that will expire in 2 months.</p>
+<p>[NOTE] The application is currently authorized with an application token that will expire in 2 months.<br>
+[NOTE] In V2.0, Address Book Pro should introduce Facebook user login and allow users to authenticate the application instead of storing application tokens.</p>
 </div>
 <div class="paragraph">
 <p>In the event that an image cannot be retrieved from Facebook, a default image stored locally would be used as the contact&#8217;s profile picture.</p>
 </div>
 <div class="paragraph">
-<p><strong>Aspect</strong> Retrieving a user&#8217;s Facebook profile picture<br>
+<p><strong>Aspect:</strong> Retrieving a user&#8217;s Facebook profile picture<br>
 <strong>Alternative 1 (temporary fix)</strong>: Hard code a Facebook userId, which will be used to retrieve a profile picture from the user.<br>
 <strong>Alternative 2</strong>: Figure out how to retrieve userId from a Facebook user&#8217;s username or url.<br>
 <strong>Alternative 3</strong>: Introduce another 3rd party library that returns a userId from a username<br>
-<strong>Pros</strong>: Able to quickly prototype with the temporary fix<br>
-<strong>Cons</strong>: The profile picture does not match the actual contact</p>
+<strong>Alternative 4 (Current Solution)</strong>: Get users to store their Facebook Id directly for immediate usage<br>
+<strong>Pros</strong>: A simple fix to easily retrieve a contact&#8217;s profile picture<br>
+<strong>Cons</strong>: Facebook IDs are not usually remembered by users and may require more effort to retrieve.</p>
 </div>
 <div class="paragraph">
-<p><strong>Aspect</strong> Facebook Authentication<br>
+<p><strong>Aspect:</strong> Facebook Authentication<br>
 <strong>Alternative 1 (current choice)</strong>: Create a Facebook application and store the app id, app secret and token in the <code>PersonProfile</code> class.<br>
 <strong>Alternative 2</strong>: Get users to log in with their own Facebook accounts and grant permission<br>
 <strong>Pros</strong>: Hassle free for users<br>
@@ -2681,6 +2694,22 @@ for <code>RemarkCommandParser</code>.</p>
 <pre>A contact detail that is not meant to be shared with others</pre>
 </div>
 </div>
+<div id="facebook-Id" class="paragraph">
+<p>Facebook Id</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>A unique integer assigned by Facebook to identify users</pre>
+</div>
+</div>
+<div id="user-credentials" class="paragraph">
+<p>User Credentials</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>The username and password of the current user, which will be used for authentication</pre>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -2723,7 +2752,7 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 14:56:47 +00:00
+Last updated 2017-11-13 15:02:27 +00:00
 </div>
 </div>
 </body>
